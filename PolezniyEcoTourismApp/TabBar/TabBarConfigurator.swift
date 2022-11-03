@@ -41,12 +41,10 @@ private extension TabBarConfigurator {
         allTab.forEach { tab in
             let controller = getCurrentViewController(tab: tab)
             let navigationController = UINavigationController(rootViewController: controller)
-            let searchController = UISearchController()
             let tabBarItem = UITabBarItem(title: tab.title, image: tab.image, selectedImage: tab.selectedImage)
             controller.tabBarItem = tabBarItem
             controller.navigationController?.navigationBar.prefersLargeTitles = true
             controller.title = tab.title
-            controller.navigationItem.searchController = searchController
             controller.view.backgroundColor = UIColor(named: "Background")
             viewControllers.append(navigationController)
         }
