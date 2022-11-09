@@ -22,10 +22,18 @@
 		1F036747290E9C3400E8E6EB /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F036745290E9C3400E8E6EB /* ReportViewController.xib */; };
 		1F03674B290E9CB900E8E6EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036749290E9CB900E8E6EB /* FeedViewController.swift */; };
 		1F03674C290E9CB900E8E6EB /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F03674A290E9CB900E8E6EB /* FeedViewController.xib */; };
+		1FA06009291BEEC100B49A08 /* RoutesCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA06008291BEEC100B49A08 /* RoutesCardCollectionView.swift */; };
+		1FA0600B291BEED000B49A08 /* RoutesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA0600A291BEED000B49A08 /* RoutesCardCollectionViewCell.swift */; };
+		1FA0600D291BEEE800B49A08 /* EventsCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA0600C291BEEE800B49A08 /* EventsCardCollectionView.swift */; };
+		1FA0600F291BEEFA00B49A08 /* EventsCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA0600E291BEEFA00B49A08 /* EventsCardCollectionViewCell.swift */; };
+		1FA06011291BEF1400B49A08 /* GarbagePointsCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA06010291BEF1400B49A08 /* GarbagePointsCardCollectionView.swift */; };
+		1FA06013291BEF2200B49A08 /* GarbagePointCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA06012291BEF2200B49A08 /* GarbagePointCollectionViewCell.swift */; };
 		1FAD5185291193F5004558D8 /* HorizontalExploreMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD5184291193F5004558D8 /* HorizontalExploreMenuCollectionView.swift */; };
 		1FAD518729119598004558D8 /* HorizontalExploreMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD518629119598004558D8 /* HorizontalExploreMenuCollectionViewCell.swift */; };
 		1FAD518929119CF5004558D8 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD518829119CF5004558D8 /* SF-Pro-Rounded-Semibold.otf */; };
 		1FAD518C29119E92004558D8 /* FontKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD518B29119E92004558D8 /* FontKit.swift */; };
+		1FCAB010291414CF00598ED2 /* PlacesCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAB00F291414CF00598ED2 /* PlacesCardCollectionView.swift */; };
+		1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,10 +54,18 @@
 		1F036745290E9C3400E8E6EB /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		1F036749290E9CB900E8E6EB /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		1F03674A290E9CB900E8E6EB /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
+		1FA06008291BEEC100B49A08 /* RoutesCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCardCollectionView.swift; sourceTree = "<group>"; };
+		1FA0600A291BEED000B49A08 /* RoutesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FA0600C291BEEE800B49A08 /* EventsCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCardCollectionView.swift; sourceTree = "<group>"; };
+		1FA0600E291BEEFA00B49A08 /* EventsCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FA06010291BEF1400B49A08 /* GarbagePointsCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbagePointsCardCollectionView.swift; sourceTree = "<group>"; };
+		1FA06012291BEF2200B49A08 /* GarbagePointCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbagePointCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FAD5184291193F5004558D8 /* HorizontalExploreMenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalExploreMenuCollectionView.swift; sourceTree = "<group>"; };
 		1FAD518629119598004558D8 /* HorizontalExploreMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalExploreMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FAD518829119CF5004558D8 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		1FAD518B29119E92004558D8 /* FontKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontKit.swift; sourceTree = "<group>"; };
+		1FCAB00F291414CF00598ED2 /* PlacesCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCardCollectionView.swift; sourceTree = "<group>"; };
+		1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCardCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				1F036718290E872600E8E6EB /* ExploreViewController.swift */,
+				1F77F66B291BEBDB00412DEF /* Places */,
+				1F77F66C291BEC3E00412DEF /* Routes */,
+				1FA06006291BEE5100B49A08 /* Events */,
+				1FA06007291BEE5F00B49A08 /* GarbagePoints */,
 				1FAD518F2913FF39004558D8 /* HorizontalExploreMenu */,
 			);
 			path = MainModule;
@@ -167,6 +187,42 @@
 				1F03674A290E9CB900E8E6EB /* FeedViewController.xib */,
 			);
 			path = FeedModule;
+			sourceTree = "<group>";
+		};
+		1F77F66B291BEBDB00412DEF /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				1FCAB00F291414CF00598ED2 /* PlacesCardCollectionView.swift */,
+				1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		1F77F66C291BEC3E00412DEF /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				1FA06008291BEEC100B49A08 /* RoutesCardCollectionView.swift */,
+				1FA0600A291BEED000B49A08 /* RoutesCardCollectionViewCell.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		1FA06006291BEE5100B49A08 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				1FA0600C291BEEE800B49A08 /* EventsCardCollectionView.swift */,
+				1FA0600E291BEEFA00B49A08 /* EventsCardCollectionViewCell.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		1FA06007291BEE5F00B49A08 /* GarbagePoints */ = {
+			isa = PBXGroup;
+			children = (
+				1FA06010291BEF1400B49A08 /* GarbagePointsCardCollectionView.swift */,
+				1FA06012291BEF2200B49A08 /* GarbagePointCollectionViewCell.swift */,
+			);
+			path = GarbagePoints;
 			sourceTree = "<group>";
 		};
 		1FAD518A29119E86004558D8 /* Helper */ = {
@@ -261,17 +317,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA0600B291BEED000B49A08 /* RoutesCardCollectionViewCell.swift in Sources */,
+				1FA06011291BEF1400B49A08 /* GarbagePointsCardCollectionView.swift in Sources */,
+				1FA0600F291BEEFA00B49A08 /* EventsCardCollectionViewCell.swift in Sources */,
 				1F036719290E872600E8E6EB /* ExploreViewController.swift in Sources */,
 				1FAD5185291193F5004558D8 /* HorizontalExploreMenuCollectionView.swift in Sources */,
 				1F03674B290E9CB900E8E6EB /* FeedViewController.swift in Sources */,
+				1FCAB010291414CF00598ED2 /* PlacesCardCollectionView.swift in Sources */,
 				1F036715290E872600E8E6EB /* AppDelegate.swift in Sources */,
 				1F036731290E9B2B00E8E6EB /* TabBarConfigurator.swift in Sources */,
+				1FA0600D291BEEE800B49A08 /* EventsCardCollectionView.swift in Sources */,
 				1F036717290E872600E8E6EB /* SceneDelegate.swift in Sources */,
+				1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */,
 				1F03673A290E9BAB00E8E6EB /* ProfileViewController.swift in Sources */,
+				1FA06013291BEF2200B49A08 /* GarbagePointCollectionViewCell.swift in Sources */,
 				1FAD518C29119E92004558D8 /* FontKit.swift in Sources */,
 				1F036746290E9C3400E8E6EB /* ReportViewController.swift in Sources */,
 				1F036736290E9B9B00E8E6EB /* FavoriteViewController.swift in Sources */,
 				1FAD518729119598004558D8 /* HorizontalExploreMenuCollectionViewCell.swift in Sources */,
+				1FA06009291BEEC100B49A08 /* RoutesCardCollectionView.swift in Sources */,
 				1F036733290E9B3600E8E6EB /* TabBarModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

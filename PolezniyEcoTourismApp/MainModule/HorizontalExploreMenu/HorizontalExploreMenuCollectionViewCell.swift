@@ -38,8 +38,8 @@ class HorizontalExploreMenuCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupViews()
-        setConstraint()
-        setConstraints()
+        setCategoryImageConstraint()
+        setNameCategoryConstraints()
             }
     
     required init?(coder: NSCoder) {
@@ -55,7 +55,7 @@ class HorizontalExploreMenuCollectionViewCell: UICollectionViewCell {
         addSubview(iconExploreCategoryImage)
     }
     
-    private func setConstraint() {
+    private func setCategoryImageConstraint() {
         NSLayoutConstraint.activate([
             iconExploreCategoryImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             iconExploreCategoryImage.widthAnchor.constraint(equalToConstant: 10),
@@ -64,7 +64,7 @@ class HorizontalExploreMenuCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    private func setConstraints() {
+    private func setNameCategoryConstraints() {
         NSLayoutConstraint.activate([
             nameExploreCategoryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             nameExploreCategoryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
