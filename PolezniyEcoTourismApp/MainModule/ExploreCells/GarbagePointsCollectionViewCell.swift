@@ -1,13 +1,13 @@
 //
-//  PlacesCardCollectionViewCell.swift
+//  GarbagePointsCollectionViewCell.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 11/4/22.
+//  Created by Aleksandr Chebotarev on 11/21/22.
 //
 
 import UIKit
 
-class PlacesCardCollectionViewCell: UICollectionViewCell {
+class GarbagePointsCollectionViewCell: UICollectionViewCell {
     
     let cardPlacesImage: UIImageView = {
         let image = UIImageView()
@@ -33,7 +33,7 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -53,7 +53,7 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    let cardTransportIcon: UIImageView = {
+    let cardWorkTimeIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -61,16 +61,16 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    let cardTransportLabel: UILabel = {
+    let cardWorkTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
-    let cardBeautyIcon: UIImageView = {
+    let cardPlasticIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -78,16 +78,7 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    let cardBeautyLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
-        return label
-    }()
-    
-    let cardPollutionIcon: UIImageView = {
+    let cardGlassIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -95,13 +86,36 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    let cardPollutionLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
-        return label
+    let cardBulbIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardBatteriesIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardPaperIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardMetalIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
     }()
     
     let saveButton: UIButton = {
@@ -148,13 +162,16 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
         addSubview(cardNameTitle)
         addSubview(cardLocationIcon)
         addSubview(cardLocationName)
+        //Time Attributes
+        addSubview(cardWorkTimeIcon)
+        addSubview(cardWorkTimeLabel)
         //Metrics
-        addSubview(cardTransportIcon)
-        addSubview(cardTransportLabel)
-        addSubview(cardBeautyIcon)
-        addSubview(cardBeautyLabel)
-        addSubview(cardPollutionIcon)
-        addSubview(cardPollutionLabel)
+        addSubview(cardPlasticIcon)
+        addSubview(cardGlassIcon)
+        addSubview(cardBulbIcon)
+        addSubview(cardBatteriesIcon)
+        addSubview(cardPaperIcon)
+        addSubview(cardMetalIcon)
         //Buttons
         addSubview(shareButton)
         addSubview(saveButton)
@@ -178,7 +195,7 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
             informationView.topAnchor.constraint(equalTo: cardPlacesImage.topAnchor, constant: 336),
             informationView.leftAnchor.constraint(equalTo: leftAnchor),
             informationView.rightAnchor.constraint(equalTo: rightAnchor),
-            informationView.heightAnchor.constraint(equalToConstant: 125),
+            informationView.heightAnchor.constraint(equalToConstant: 158),
             informationView.widthAnchor.constraint(equalToConstant: 358),
             
             cardNameTitle.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 16),
@@ -188,37 +205,45 @@ class PlacesCardCollectionViewCell: UICollectionViewCell {
             cardNameTitle.rightAnchor.constraint(equalTo: informationView.rightAnchor, constant: 16),
             
             cardLocationIcon.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 19.5),
-            cardLocationIcon.bottomAnchor.constraint(equalTo: cardTransportIcon.topAnchor, constant: -19.5),
+            cardLocationIcon.bottomAnchor.constraint(equalTo: cardWorkTimeIcon.topAnchor, constant: -23),
             cardLocationIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 18),
             
             cardLocationName.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 16),
-            cardLocationName.bottomAnchor.constraint(equalTo: cardTransportIcon.topAnchor, constant: -16),
+            cardLocationName.bottomAnchor.constraint(equalTo: cardWorkTimeLabel.topAnchor, constant: -16),
             cardLocationName.heightAnchor.constraint(equalToConstant: 17),
             cardLocationName.leftAnchor.constraint(equalTo: cardLocationIcon.rightAnchor, constant: 4),
             
-            cardTransportIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardTransportIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardTransportIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
+            cardWorkTimeIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 23),
+            cardWorkTimeIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
+            cardWorkTimeIcon.bottomAnchor.constraint(equalTo: cardPlasticIcon.topAnchor, constant: -19.5),
             
-            cardTransportLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 19.5),
-            cardTransportLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -19.5),
-            cardTransportLabel.leftAnchor.constraint(equalTo: cardTransportIcon.rightAnchor, constant: 8),
+            cardWorkTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardWorkTimeLabel.leftAnchor.constraint(equalTo: cardWorkTimeIcon.rightAnchor, constant: 4),
+            cardWorkTimeLabel.bottomAnchor.constraint(equalTo: cardPlasticIcon.topAnchor, constant: -16),
             
-            cardBeautyIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardBeautyIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardBeautyIcon.leftAnchor.constraint(equalTo: cardTransportLabel.rightAnchor, constant: 16),
+            cardPlasticIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardPlasticIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardPlasticIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
             
-            cardBeautyLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 19.5),
-            cardBeautyLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -19.5),
-            cardBeautyLabel.leftAnchor.constraint(equalTo: cardBeautyIcon.rightAnchor, constant: 8),
+            cardGlassIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardGlassIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardGlassIcon.leftAnchor.constraint(equalTo: cardPlasticIcon.rightAnchor, constant: 16),
             
-            cardPollutionIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardPollutionIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardPollutionIcon.leftAnchor.constraint(equalTo: cardBeautyLabel.rightAnchor, constant: 16),
+            cardBulbIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardBulbIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardBulbIcon.leftAnchor.constraint(equalTo: cardGlassIcon.rightAnchor, constant: 16),
             
-            cardPollutionLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 19.5),
-            cardPollutionLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -19.5),
-            cardPollutionLabel.leftAnchor.constraint(equalTo: cardPollutionIcon.rightAnchor, constant: 8)
+            cardBatteriesIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardBatteriesIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardBatteriesIcon.leftAnchor.constraint(equalTo: cardBulbIcon.rightAnchor, constant: 16),
+            
+            cardPaperIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardPaperIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardPaperIcon.leftAnchor.constraint(equalTo: cardBatteriesIcon.rightAnchor, constant: 16),
+            
+            cardMetalIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardMetalIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardMetalIcon.leftAnchor.constraint(equalTo: cardPaperIcon.rightAnchor, constant: 16),
         ])
     }
 }

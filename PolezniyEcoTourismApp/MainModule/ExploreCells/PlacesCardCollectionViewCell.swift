@@ -1,13 +1,13 @@
 //
-//  RoutesCardCollectionViewCell.swift
+//  PlacesCardCollectionViewCell.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 11/9/22.
+//  Created by Aleksandr Chebotarev on 11/4/22.
 //
 
 import UIKit
 
-class RoutesCardCollectionViewCell: UICollectionViewCell {
+class PlacesCollectionViewCell: UICollectionViewCell {
     
     let cardPlacesImage: UIImageView = {
         let image = UIImageView()
@@ -33,7 +33,7 @@ class RoutesCardCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -66,7 +66,7 @@ class RoutesCardCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -83,7 +83,7 @@ class RoutesCardCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
@@ -100,7 +100,7 @@ class RoutesCardCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 12, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
         return label
     }()
     
