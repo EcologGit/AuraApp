@@ -7,18 +7,22 @@
 
 import UIKit
 
+protocol ExploreCardData {
+    var category: Category { get }
+}
+
 enum Category: Int, CustomStringConvertible, CaseIterable {
     case places = 0
     case routes
     case events
     case garbagePoints
-
+    
     var description : String {
-      switch self {
-      case .places: return "МЕСТА"
-      case .routes: return "МАРШРУТЫ"
-      case .events: return "МЕРОПРИЯТИЯ"
-      case .garbagePoints: return "ТОЧКИ СОРТИРОВКИ"
+        switch self {
+        case .places: return "МЕСТА"
+        case .routes: return "МАРШРУТЫ"
+        case .events: return "МЕРОПРИЯТИЯ"
+        case .garbagePoints: return "ТОЧКИ СОРТИРОВКИ"
         }
     }
     
@@ -28,57 +32,121 @@ enum Category: Int, CustomStringConvertible, CaseIterable {
         case .routes: return UIImage(systemName: "point.topleft.down.curvedto.point.filled.bottomright.up")
         case .events: return UIImage(systemName: "party.popper.fill")
         case .garbagePoints: return UIImage(systemName: "trash.fill")
-          }
-      }
+        }
+    }
 }
-
-struct ExploreCardData {
-    let cardNameTitle: String
-    let category: Category
-    let cardPlacesImage: UIImage?
-    let cardLocationName: String
-    let cardLocationIcon: UIImage?
-    let cardTransportIcon: UIImage?
-    let cardTransportLabel: String
-    let cardBeautyIcon: UIImage?
-    let cardBeautyLabel: String
-    let cardPollutionIcon: UIImage?
-    let cardPollutionLabel: String
-    let cardStartIcon: UIImage?
-    let cardStartLabel: String?
-    let cardFinishIcon: UIImage?
-    let cardFinishLabel: String?
-    let cardRouteLengthIcon: UIImage?
-    let cardRouteLengthLabel: String?
-    let cardRouteLengthMetricLabel: String?
-    let cardRouteTimeIcon: UIImage?
-    let cardRouteTimeLabel: String?
-    let cardRouteTimeMetricLabel: String?
-    let cardEventDateIcon: UIImage?
-    let cardEventDateLabel: String?
-    let cardEventTimeIcon: UIImage?
-    let cardEventTimeLabel: String?
-    let cardWorkTimeIcon: UIImage?
-    let cardWorkTimeLabel: String?
-    let cardPlasticIcon: UIImage?
-    let cardGlassIcon: UIImage?
-    let cardBulbIcon: UIImage?
-    let cardBatteriesIcon: UIImage?
-    let cardPaperIcon: UIImage?
-    let cardMetalIcon: UIImage?
-}
-
-var exploreCardData: [ExploreCardData] {
-    var myExploreCardData: [ExploreCardData] = []
+//MARK: - Models properties
+var explorePlaceCardData: [ExplorePlaceCardData] = []
+var exploreRouteCardData: [ExploreRouteCardData] = []
+var exploreEventCardData: [ExploreEventCardData] = []
+var exploreGarbagePointCardData: [ExploreGarbagePointCardData] = []
+//MARK: - Places Model
+struct Place: Codable {
+    let objectID: Int
+    let name, description, locality: String
+    let photo: String?
+    let avgAvailability, avgBeauty, avgPurity: Double?
     
-    myExploreCardData.append(ExploreCardData(cardNameTitle: "Name", category: .places, cardPlacesImage: UIImage(named: "NoImage")!, cardLocationName: "Locality", cardLocationIcon: UIImage(named: "locationIcon")!, cardTransportIcon: UIImage(named: "transportIcon")!, cardTransportLabel: "0,0", cardBeautyIcon: UIImage(named: "beautyIcon")!, cardBeautyLabel: "0,0", cardPollutionIcon: UIImage(named: "pollutionIcon")!, cardPollutionLabel: "0,0", cardStartIcon: UIImage(named: ""), cardStartLabel: "", cardFinishIcon: UIImage(named: ""), cardFinishLabel: "", cardRouteLengthIcon: UIImage(named: ""), cardRouteLengthLabel: "", cardRouteLengthMetricLabel: "", cardRouteTimeIcon: UIImage(named: ""), cardRouteTimeLabel: "", cardRouteTimeMetricLabel: "", cardEventDateIcon: UIImage(named: ""), cardEventDateLabel: "", cardEventTimeIcon: UIImage(named: ""), cardEventTimeLabel: "", cardWorkTimeIcon: UIImage(named: ""), cardWorkTimeLabel: "", cardPlasticIcon: UIImage(named: ""), cardGlassIcon: UIImage(named: ""), cardBulbIcon: UIImage(named: ""), cardBatteriesIcon: UIImage(named: ""), cardPaperIcon: UIImage(named: ""), cardMetalIcon: UIImage(named: "")))
-
-    myExploreCardData.append(ExploreCardData(cardNameTitle: "Name", category: .routes, cardPlacesImage: UIImage(named: "NoImage")!, cardLocationName: "Start/Finish", cardLocationIcon: UIImage(named: "locationIcon")!, cardTransportIcon: UIImage(named: "transportIcon")!, cardTransportLabel: "0,0", cardBeautyIcon: UIImage(named: "beautyIcon")!, cardBeautyLabel: "0,0", cardPollutionIcon: UIImage(named: "pollutionIcon")!, cardPollutionLabel: "0,0", cardStartIcon: UIImage(named: "routeStartIcon"), cardStartLabel: "Start", cardFinishIcon: UIImage(named: "routeFinishIcon"), cardFinishLabel: "Finish", cardRouteLengthIcon: UIImage(named: "routeLengthIcon"), cardRouteLengthLabel: "0,0", cardRouteLengthMetricLabel: "км", cardRouteTimeIcon: UIImage(named: "routeTimeIcon"), cardRouteTimeLabel: "0,0", cardRouteTimeMetricLabel: "ч", cardEventDateIcon: UIImage(named: ""), cardEventDateLabel: "", cardEventTimeIcon: UIImage(named: ""), cardEventTimeLabel: "", cardWorkTimeIcon: UIImage(named: ""), cardWorkTimeLabel: "", cardPlasticIcon: UIImage(named: ""), cardGlassIcon: UIImage(named: ""), cardBulbIcon: UIImage(named: ""), cardBatteriesIcon: UIImage(named: ""), cardPaperIcon: UIImage(named: ""), cardMetalIcon: UIImage(named: "")))
-
-    myExploreCardData.append(ExploreCardData(cardNameTitle: "Name", category: .events, cardPlacesImage: UIImage(named: "NoImage")!, cardLocationName: "Locality", cardLocationIcon: UIImage(named: "locationIcon"), cardTransportIcon: UIImage(named: ""), cardTransportLabel: "0,0", cardBeautyIcon: UIImage(named: ""), cardBeautyLabel: "0,0", cardPollutionIcon: UIImage(named: ""), cardPollutionLabel: "0,0", cardStartIcon: UIImage(named: ""), cardStartLabel: "", cardFinishIcon: UIImage(named: ""), cardFinishLabel: "", cardRouteLengthIcon: UIImage(named: ""), cardRouteLengthLabel: "", cardRouteLengthMetricLabel: "", cardRouteTimeIcon: UIImage(named: ""), cardRouteTimeLabel: "", cardRouteTimeMetricLabel: "", cardEventDateIcon: UIImage(named: "calendarIcon"), cardEventDateLabel: "01.01.2023", cardEventTimeIcon: UIImage(named: "timeIcon"), cardEventTimeLabel: "00:00", cardWorkTimeIcon: UIImage(named: ""), cardWorkTimeLabel: "", cardPlasticIcon: UIImage(named: ""), cardGlassIcon: UIImage(named: ""), cardBulbIcon: UIImage(named: ""), cardBatteriesIcon: UIImage(named: ""), cardPaperIcon: UIImage(named: ""), cardMetalIcon: UIImage(named: "")))
-
-    myExploreCardData.append(ExploreCardData(cardNameTitle: "Name", category: .garbagePoints, cardPlacesImage: UIImage(named: "NoImage")!, cardLocationName: "Locality", cardLocationIcon: UIImage(named: "locationIcon")!, cardTransportIcon: UIImage(named: ""), cardTransportLabel: "", cardBeautyIcon: UIImage(named: ""), cardBeautyLabel: "", cardPollutionIcon: UIImage(named: ""), cardPollutionLabel: "", cardStartIcon: UIImage(named: ""), cardStartLabel: "", cardFinishIcon: UIImage(named: ""), cardFinishLabel: "", cardRouteLengthIcon: UIImage(named: ""), cardRouteLengthLabel: "", cardRouteLengthMetricLabel: "", cardRouteTimeIcon: UIImage(named: ""), cardRouteTimeLabel: "", cardRouteTimeMetricLabel: "", cardEventDateIcon: UIImage(named: ""), cardEventDateLabel: "", cardEventTimeIcon: UIImage(named: ""), cardEventTimeLabel: "", cardWorkTimeIcon: UIImage(named: "timeIcon"), cardWorkTimeLabel: "00:00 - 00:00", cardPlasticIcon: UIImage(named: "plasticIcon"), cardGlassIcon: UIImage(named: "glassIcon"), cardBulbIcon: UIImage(named: "bulbsIcon"), cardBatteriesIcon: UIImage(named: "batteriesIcon"), cardPaperIcon: UIImage(named: "papersIcon"), cardMetalIcon: UIImage(named: "metalsIcon")))
-
-
-    return myExploreCardData
+    enum CodingKeys: String, CodingKey {
+        case objectID = "object_id"
+        case name, description, locality
+        case photo
+        case avgAvailability = "avg_availability"
+        case avgBeauty = "avg_beauty"
+        case avgPurity = "avg_purity"
+    }
 }
+
+struct ExplorePlaceCardData: ExploreCardData {
+    let place: Place
+    let category: Category
+    let cardLocationIcon: UIImage = UIImage(named: "locationIcon")!
+    let cardTransportIcon: UIImage = UIImage(named: "transportIcon")!
+    let cardBeautyIcon: UIImage = UIImage(named: "beautyIcon")!
+    let cardPollutionIcon: UIImage = UIImage(named: "pollutionIcon")!
+}
+//MARK: - Routes Model
+struct Route: Codable {
+    let routeID: Int
+    let name, locality: String
+    let length: Double?
+    let duration: String
+    let photo: String?
+    let avgAvailability, avgBeauty, avgPurity: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case routeID = "route_id"
+        case length
+        case name, photo, locality, duration
+        case avgAvailability = "avg_availability"
+        case avgBeauty = "avg_beauty"
+        case avgPurity = "avg_purity"
+    }
+}
+
+struct ExploreRouteCardData: ExploreCardData {
+    let route: Route
+    let category: Category
+    let cardLocationIcon: UIImage = UIImage(named: "locationIcon")!
+    let cardRouteLengthIcon: UIImage = UIImage(named: "routeLengthIcon")!
+    let cardRouteLengthMetricLabel: String = "км"
+    let cardRouteTimeIcon: UIImage = UIImage(named: "routeTimeIcon")!
+    let cardRouteTimeMetricLabel: String = "ч"
+    let cardTransportIcon: UIImage = UIImage(named: "transportIcon")!
+    let cardBeautyIcon: UIImage = UIImage(named: "beautyIcon")!
+    let cardPollutionIcon: UIImage = UIImage(named: "pollutionIcon")!
+}
+//MARK: - Events Model
+struct Event: Codable {
+    let name: String
+    let photo: String?
+    let description: String
+    let eventID: Int
+    let datetimeStart: Date
+    let status, adress: String
+
+    enum CodingKeys: String, CodingKey {
+        case name, photo, description
+        case eventID = "event_id"
+        case datetimeStart = "datetime_start"
+        case status, adress
+    }
+}
+
+struct ExploreEventCardData: ExploreCardData {
+    let event: Event
+    let category: Category
+    let cardLocationIcon: UIImage = UIImage(named: "locationIcon")!
+    let cardEventDateIcon: UIImage = UIImage(named: "calendarIcon")!
+    let cardEventTimeIcon: UIImage = UIImage(named: "timeIcon")!
+}
+//MARK: - Garbage Points Model
+struct GarbagePoint: Codable {
+    let pointID: Int
+    let photo: String?
+    let name, description, locality, schedule: String
+    let wastTypes: [WastType]
+    
+    enum CodingKeys: String, CodingKey {
+        case pointID = "point_id"
+        case name, description, locality, schedule
+        case photo
+        case wastTypes = "wast_types"
+    }
+}
+struct WastType: Codable {
+    let name: String
+}
+struct ExploreGarbagePointCardData: ExploreCardData {
+    let garbagePoint: GarbagePoint
+    let category: Category
+    let cardLocationIcon: UIImage = UIImage(named: "locationIcon")!
+    let cardWorkTimeIcon: UIImage = UIImage(named: "timeIcon")!
+    let cardPlasticIcon: UIImage = UIImage(named: "plasticIcon")!
+    let cardGlassIcon: UIImage = UIImage(named: "glassIcon")!
+    let cardBulbIcon: UIImage = UIImage(named: "bulbsIcon")!
+    let cardBatteriesIcon: UIImage = UIImage(named: "batteriesIcon")!
+    let cardPaperIcon: UIImage = UIImage(named: "papersIcon")!
+    let cardMetalIcon: UIImage = UIImage(named: "metalsIcon")!
+}
+

@@ -14,14 +14,6 @@
 		1F036721290E872700E8E6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F03671F290E872700E8E6EB /* LaunchScreen.storyboard */; };
 		1F036731290E9B2B00E8E6EB /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036730290E9B2B00E8E6EB /* TabBarConfigurator.swift */; };
 		1F036733290E9B3600E8E6EB /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036732290E9B3600E8E6EB /* TabBarModel.swift */; };
-		1F036736290E9B9B00E8E6EB /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036734290E9B9B00E8E6EB /* FavoriteViewController.swift */; };
-		1F036737290E9B9B00E8E6EB /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F036735290E9B9B00E8E6EB /* FavoriteViewController.xib */; };
-		1F03673A290E9BAB00E8E6EB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036738290E9BAB00E8E6EB /* ProfileViewController.swift */; };
-		1F03673B290E9BAB00E8E6EB /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F036739290E9BAB00E8E6EB /* ProfileViewController.xib */; };
-		1F036746290E9C3400E8E6EB /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036744290E9C3400E8E6EB /* ReportViewController.swift */; };
-		1F036747290E9C3400E8E6EB /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F036745290E9C3400E8E6EB /* ReportViewController.xib */; };
-		1F03674B290E9CB900E8E6EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036749290E9CB900E8E6EB /* FeedViewController.swift */; };
-		1F03674C290E9CB900E8E6EB /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F03674A290E9CB900E8E6EB /* FeedViewController.xib */; };
 		1FA5CFFD292BCA690001EB62 /* RoutesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5CFFC292BCA690001EB62 /* RoutesCollectionViewCell.swift */; };
 		1FA5CFFF292BCA7B0001EB62 /* EventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5CFFE292BCA7B0001EB62 /* EventsCollectionViewCell.swift */; };
 		1FA5D001292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5D000292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift */; };
@@ -31,6 +23,12 @@
 		1FAEBAB32922A6D100300CE6 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAEBAB22922A6D100300CE6 /* TabView.swift */; };
 		1FAEBAB52922A6E900300CE6 /* ScrollableTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAEBAB42922A6E900300CE6 /* ScrollableTabView.swift */; };
 		1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */; };
+		1FF1416D2A1400FD002283D1 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1416C2A1400FD002283D1 /* ActivityViewController.swift */; };
+		1FF1416F2A140114002283D1 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1416E2A140114002283D1 /* ReportViewController.swift */; };
+		1FF141712A140127002283D1 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141702A140127002283D1 /* FavoritesViewController.swift */; };
+		1FF141732A140132002283D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141722A140132002283D1 /* ProfileViewController.swift */; };
+		1FF141752A152CEB002283D1 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141742A152CEB002283D1 /* ActivityData.swift */; };
+		1FF141772A1538AC002283D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141762A1538AC002283D1 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,14 +41,6 @@
 		1F036722290E872700E8E6EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F036730290E9B2B00E8E6EB /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
 		1F036732290E9B3600E8E6EB /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
-		1F036734290E9B9B00E8E6EB /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
-		1F036735290E9B9B00E8E6EB /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
-		1F036738290E9BAB00E8E6EB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1F036739290E9BAB00E8E6EB /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		1F036744290E9C3400E8E6EB /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		1F036745290E9C3400E8E6EB /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
-		1F036749290E9CB900E8E6EB /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		1F03674A290E9CB900E8E6EB /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
 		1FA5CFFC292BCA690001EB62 /* RoutesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FA5CFFE292BCA7B0001EB62 /* EventsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FA5D000292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbagePointsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -60,6 +50,12 @@
 		1FAEBAB22922A6D100300CE6 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		1FAEBAB42922A6E900300CE6 /* ScrollableTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTabView.swift; sourceTree = "<group>"; };
 		1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FF1416C2A1400FD002283D1 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		1FF1416E2A140114002283D1 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		1FF141702A140127002283D1 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		1FF141722A140132002283D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1FF141742A152CEB002283D1 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
+		1FF141762A1538AC002283D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +90,12 @@
 			children = (
 				1FAD518A29119E86004558D8 /* Helper */,
 				1F036729290E98EB00E8E6EB /* Application */,
-				1F03672F290E9A3500E8E6EB /* ReportModule */,
-				1F03672D290E9A1D00E8E6EB /* ProfileModule */,
-				1F036748290E9CA900E8E6EB /* FeedModule */,
-				1F03672C290E9A1200E8E6EB /* FavoriteModule */,
+				1FF1416B2A1400A5002283D1 /* ProfileModule */,
+				1FF1416A2A140094002283D1 /* FavoritesModule */,
+				1FF141692A14008B002283D1 /* ReportModule */,
+				1FF141682A14007D002283D1 /* ActivityModule */,
 				1F03672A290E99E800E8E6EB /* TabBar */,
+				1FAD518F2913FF39004558D8 /* HorizontalMenu */,
 				1F03672B290E9A0500E8E6EB /* MainModule */,
 			);
 			path = PolezniyEcoTourismApp;
@@ -138,47 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				1F036718290E872600E8E6EB /* ExploreViewController.swift */,
-				1F77F66B291BEBDB00412DEF /* ExploreCells */,
-				1FAD518F2913FF39004558D8 /* HorizontalExploreMenu */,
 				1FAEBAAA292267FD00300CE6 /* CardsData.swift */,
+				1F77F66B291BEBDB00412DEF /* ExploreCells */,
 			);
 			path = MainModule;
-			sourceTree = "<group>";
-		};
-		1F03672C290E9A1200E8E6EB /* FavoriteModule */ = {
-			isa = PBXGroup;
-			children = (
-				1F036734290E9B9B00E8E6EB /* FavoriteViewController.swift */,
-				1F036735290E9B9B00E8E6EB /* FavoriteViewController.xib */,
-			);
-			path = FavoriteModule;
-			sourceTree = "<group>";
-		};
-		1F03672D290E9A1D00E8E6EB /* ProfileModule */ = {
-			isa = PBXGroup;
-			children = (
-				1F036738290E9BAB00E8E6EB /* ProfileViewController.swift */,
-				1F036739290E9BAB00E8E6EB /* ProfileViewController.xib */,
-			);
-			path = ProfileModule;
-			sourceTree = "<group>";
-		};
-		1F03672F290E9A3500E8E6EB /* ReportModule */ = {
-			isa = PBXGroup;
-			children = (
-				1F036744290E9C3400E8E6EB /* ReportViewController.swift */,
-				1F036745290E9C3400E8E6EB /* ReportViewController.xib */,
-			);
-			path = ReportModule;
-			sourceTree = "<group>";
-		};
-		1F036748290E9CA900E8E6EB /* FeedModule */ = {
-			isa = PBXGroup;
-			children = (
-				1F036749290E9CB900E8E6EB /* FeedViewController.swift */,
-				1F03674A290E9CB900E8E6EB /* FeedViewController.xib */,
-			);
-			path = FeedModule;
 			sourceTree = "<group>";
 		};
 		1F77F66B291BEBDB00412DEF /* ExploreCells */ = {
@@ -196,17 +156,51 @@
 			isa = PBXGroup;
 			children = (
 				1FAD518B29119E92004558D8 /* FontKit.swift */,
+				1FF141762A1538AC002283D1 /* Parser.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		1FAD518F2913FF39004558D8 /* HorizontalExploreMenu */ = {
+		1FAD518F2913FF39004558D8 /* HorizontalMenu */ = {
 			isa = PBXGroup;
 			children = (
 				1FAEBAB22922A6D100300CE6 /* TabView.swift */,
 				1FAEBAB42922A6E900300CE6 /* ScrollableTabView.swift */,
 			);
-			path = HorizontalExploreMenu;
+			path = HorizontalMenu;
+			sourceTree = "<group>";
+		};
+		1FF141682A14007D002283D1 /* ActivityModule */ = {
+			isa = PBXGroup;
+			children = (
+				1FF1416C2A1400FD002283D1 /* ActivityViewController.swift */,
+				1FF141742A152CEB002283D1 /* ActivityData.swift */,
+			);
+			path = ActivityModule;
+			sourceTree = "<group>";
+		};
+		1FF141692A14008B002283D1 /* ReportModule */ = {
+			isa = PBXGroup;
+			children = (
+				1FF1416E2A140114002283D1 /* ReportViewController.swift */,
+			);
+			path = ReportModule;
+			sourceTree = "<group>";
+		};
+		1FF1416A2A140094002283D1 /* FavoritesModule */ = {
+			isa = PBXGroup;
+			children = (
+				1FF141702A140127002283D1 /* FavoritesViewController.swift */,
+			);
+			path = FavoritesModule;
+			sourceTree = "<group>";
+		};
+		1FF1416B2A1400A5002283D1 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				1FF141722A140132002283D1 /* ProfileViewController.swift */,
+			);
+			path = ProfileModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,12 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F036721290E872700E8E6EB /* LaunchScreen.storyboard in Resources */,
-				1F036747290E9C3400E8E6EB /* ReportViewController.xib in Resources */,
 				1F03671E290E872700E8E6EB /* Assets.xcassets in Resources */,
-				1F03673B290E9BAB00E8E6EB /* ProfileViewController.xib in Resources */,
-				1F03674C290E9CB900E8E6EB /* FeedViewController.xib in Resources */,
 				1FAD518929119CF5004558D8 /* SF-Pro-Rounded-Semibold.otf in Resources */,
-				1F036737290E9B9B00E8E6EB /* FavoriteViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,21 +274,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF141752A152CEB002283D1 /* ActivityData.swift in Sources */,
 				1F036719290E872600E8E6EB /* ExploreViewController.swift in Sources */,
-				1F03674B290E9CB900E8E6EB /* FeedViewController.swift in Sources */,
 				1F036715290E872600E8E6EB /* AppDelegate.swift in Sources */,
 				1FA5D001292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift in Sources */,
 				1F036731290E9B2B00E8E6EB /* TabBarConfigurator.swift in Sources */,
 				1F036717290E872600E8E6EB /* SceneDelegate.swift in Sources */,
 				1FA5CFFF292BCA7B0001EB62 /* EventsCollectionViewCell.swift in Sources */,
 				1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */,
-				1F03673A290E9BAB00E8E6EB /* ProfileViewController.swift in Sources */,
+				1FF141732A140132002283D1 /* ProfileViewController.swift in Sources */,
 				1FAD518C29119E92004558D8 /* FontKit.swift in Sources */,
+				1FF1416F2A140114002283D1 /* ReportViewController.swift in Sources */,
 				1FAEBAB32922A6D100300CE6 /* TabView.swift in Sources */,
+				1FF141712A140127002283D1 /* FavoritesViewController.swift in Sources */,
 				1FA5CFFD292BCA690001EB62 /* RoutesCollectionViewCell.swift in Sources */,
-				1F036746290E9C3400E8E6EB /* ReportViewController.swift in Sources */,
-				1F036736290E9B9B00E8E6EB /* FavoriteViewController.swift in Sources */,
 				1FAEBAB52922A6E900300CE6 /* ScrollableTabView.swift in Sources */,
+				1FF141772A1538AC002283D1 /* Parser.swift in Sources */,
+				1FF1416D2A1400FD002283D1 /* ActivityViewController.swift in Sources */,
 				1FAEBAAB292267FD00300CE6 /* CardsData.swift in Sources */,
 				1F036733290E9B3600E8E6EB /* TabBarModel.swift in Sources */,
 			);

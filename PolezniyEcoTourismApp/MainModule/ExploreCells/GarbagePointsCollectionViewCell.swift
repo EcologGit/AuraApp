@@ -70,7 +70,7 @@ class GarbagePointsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let cardPlasticIcon: UIImageView = {
+    let cardWastTypeIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -78,47 +78,7 @@ class GarbagePointsCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    let cardGlassIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        return image
-    }()
-    
-    let cardBulbIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        return image
-    }()
-    
-    let cardBatteriesIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        return image
-    }()
-    
-    let cardPaperIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        return image
-    }()
-    
-    let cardMetalIcon: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        return image
-    }()
-    
-    let saveButton: UIButton = {
+    lazy var saveButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         let image = UIImage(named: "saveButton")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -127,7 +87,7 @@ class GarbagePointsCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    let shareButton: UIButton = {
+    lazy var shareButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         let image = UIImage(named: "shareButton")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -166,12 +126,7 @@ class GarbagePointsCollectionViewCell: UICollectionViewCell {
         addSubview(cardWorkTimeIcon)
         addSubview(cardWorkTimeLabel)
         //Metrics
-        addSubview(cardPlasticIcon)
-        addSubview(cardGlassIcon)
-        addSubview(cardBulbIcon)
-        addSubview(cardBatteriesIcon)
-        addSubview(cardPaperIcon)
-        addSubview(cardMetalIcon)
+        addSubview(cardWastTypeIcon)
         //Buttons
         addSubview(shareButton)
         addSubview(saveButton)
@@ -215,35 +170,15 @@ class GarbagePointsCollectionViewCell: UICollectionViewCell {
             
             cardWorkTimeIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 23),
             cardWorkTimeIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-            cardWorkTimeIcon.bottomAnchor.constraint(equalTo: cardPlasticIcon.topAnchor, constant: -19.5),
+            cardWorkTimeIcon.bottomAnchor.constraint(equalTo: cardWastTypeIcon.topAnchor, constant: -19.5),
             
             cardWorkTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
             cardWorkTimeLabel.leftAnchor.constraint(equalTo: cardWorkTimeIcon.rightAnchor, constant: 4),
-            cardWorkTimeLabel.bottomAnchor.constraint(equalTo: cardPlasticIcon.topAnchor, constant: -16),
+            cardWorkTimeLabel.bottomAnchor.constraint(equalTo: cardWastTypeIcon.topAnchor, constant: -16),
             
-            cardPlasticIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardPlasticIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardPlasticIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-            
-            cardGlassIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardGlassIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardGlassIcon.leftAnchor.constraint(equalTo: cardPlasticIcon.rightAnchor, constant: 16),
-            
-            cardBulbIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardBulbIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardBulbIcon.leftAnchor.constraint(equalTo: cardGlassIcon.rightAnchor, constant: 16),
-            
-            cardBatteriesIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardBatteriesIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardBatteriesIcon.leftAnchor.constraint(equalTo: cardBulbIcon.rightAnchor, constant: 16),
-            
-            cardPaperIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardPaperIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardPaperIcon.leftAnchor.constraint(equalTo: cardBatteriesIcon.rightAnchor, constant: 16),
-            
-            cardMetalIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
-            cardMetalIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardMetalIcon.leftAnchor.constraint(equalTo: cardPaperIcon.rightAnchor, constant: 16),
+            cardWastTypeIcon.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
+            cardWastTypeIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
+            cardWastTypeIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16)
         ])
     }
 }

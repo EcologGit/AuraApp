@@ -22,6 +22,8 @@ class EventsCollectionViewCell: UICollectionViewCell {
     let cardNameTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
         label.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
@@ -87,8 +89,24 @@ class EventsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let cardEventStatusIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
     
-    let saveButton: UIButton = {
+    let cardEventStatusLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    lazy var saveButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         let image = UIImage(named: "saveButton")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +115,7 @@ class EventsCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    let shareButton: UIButton = {
+    lazy var shareButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         let image = UIImage(named: "shareButton")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -137,6 +155,9 @@ class EventsCollectionViewCell: UICollectionViewCell {
         addSubview(cardEventDateLabel)
         addSubview(cardEventTimeIcon)
         addSubview(cardEventTimeLabel)
+        //Status
+        addSubview(cardEventStatusLabel)
+        addSubview(cardEventStatusIcon)
         //Buttons
         addSubview(shareButton)
         addSubview(saveButton)
@@ -145,30 +166,30 @@ class EventsCollectionViewCell: UICollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            
+            //Image constraints
             cardPlacesImage.topAnchor.constraint(equalTo: topAnchor),
             cardPlacesImage.leftAnchor.constraint(equalTo: leftAnchor),
             cardPlacesImage.rightAnchor.constraint(equalTo: rightAnchor),
             cardPlacesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -103),
-            
+            //Buttons constraints
             shareButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             shareButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             
             saveButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             saveButton.rightAnchor.constraint(equalTo: shareButton.leftAnchor, constant: -16),
-            
+            //View constraints
             informationView.topAnchor.constraint(equalTo: cardPlacesImage.topAnchor, constant: 336),
             informationView.leftAnchor.constraint(equalTo: leftAnchor),
             informationView.rightAnchor.constraint(equalTo: rightAnchor),
-            informationView.heightAnchor.constraint(equalToConstant: 113),
+            informationView.heightAnchor.constraint(equalToConstant: 151),
             informationView.widthAnchor.constraint(equalToConstant: 358),
-            
+            //Card Name constraints
             cardNameTitle.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 16),
             cardNameTitle.bottomAnchor.constraint(equalTo: cardLocationName.topAnchor, constant: -16),
             cardNameTitle.heightAnchor.constraint(equalToConstant: 20),
             cardNameTitle.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
             cardNameTitle.rightAnchor.constraint(equalTo: informationView.rightAnchor, constant: 16),
-            
+            //Location constraints
             cardLocationIcon.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 19.5),
             cardLocationIcon.bottomAnchor.constraint(equalTo: cardEventDateIcon.topAnchor, constant: -21),
             cardLocationIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 18),
@@ -177,10 +198,10 @@ class EventsCollectionViewCell: UICollectionViewCell {
             cardLocationName.bottomAnchor.constraint(equalTo: cardEventDateLabel.topAnchor, constant: -13.5),
             cardLocationName.heightAnchor.constraint(equalToConstant: 17),
             cardLocationName.leftAnchor.constraint(equalTo: cardLocationIcon.rightAnchor, constant: 4),
-            
+            // Date and Time constraints
             cardEventDateIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 21),
             cardEventDateIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-            
+
             cardEventDateLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 13.5),
             cardEventDateLabel.leftAnchor.constraint(equalTo: cardEventDateIcon.rightAnchor, constant: 4),
             cardEventDateLabel.heightAnchor.constraint(equalToConstant: 17),
@@ -191,6 +212,14 @@ class EventsCollectionViewCell: UICollectionViewCell {
             cardEventTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 13.5),
             cardEventTimeLabel.leftAnchor.constraint(equalTo: cardEventTimeIcon.rightAnchor, constant: 4),
             cardEventTimeLabel.heightAnchor.constraint(equalToConstant: 17),
+            // Status constraints
+            cardEventStatusIcon.topAnchor.constraint(equalTo: cardEventDateIcon.bottomAnchor, constant: 23),
+            cardEventStatusIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
+            cardEventStatusIcon.heightAnchor.constraint(equalToConstant: 10),
+            
+            cardEventStatusLabel.topAnchor.constraint(equalTo: cardEventDateLabel.bottomAnchor, constant: 16),
+            cardEventStatusLabel.leftAnchor.constraint(equalTo: cardEventStatusIcon.rightAnchor, constant: 4),
+            cardEventStatusLabel.heightAnchor.constraint(equalToConstant: 17)
             
         ])
     }

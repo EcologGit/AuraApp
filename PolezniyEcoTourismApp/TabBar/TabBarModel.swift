@@ -19,7 +19,7 @@ enum TabBarModel {
         case .explore:
             return "Обзор"
         case .feed:
-            return "Лента"
+            return "Активность"
         case .report:
             return "Отчет"
         case .favorite:

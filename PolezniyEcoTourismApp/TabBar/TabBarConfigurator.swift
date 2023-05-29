@@ -18,7 +18,6 @@ final class TabBarConfigurator {
     func configure() -> UITabBarController {
         return getTabBarController()
     }
-
 }
 
 // MARK: - Private Methods
@@ -31,13 +30,11 @@ private extension TabBarConfigurator {
         tabBarController.tabBar.unselectedItemTintColor = UIColor(named: "DarkGrey")
         tabBarController.tabBar.backgroundColor = .white
         tabBarController.viewControllers = getViewControllers()
-
         return tabBarController
     }
 
     func getViewControllers() -> [UIViewController] {
         var viewControllers = [UIViewController]()
-
         allTab.forEach { tab in
             let controller = getCurrentViewController(tab: tab)
             let navigationController = UINavigationController(rootViewController: controller)
@@ -48,7 +45,6 @@ private extension TabBarConfigurator {
             controller.view.backgroundColor = UIColor(named: "Background")
             viewControllers.append(navigationController)
         }
-
         return viewControllers
     }
 
@@ -57,14 +53,13 @@ private extension TabBarConfigurator {
         case .explore:
             return ExploreViewController()
         case .feed:
-            return FeedViewController()
+            return ActivityViewController()
         case .report:
             return ReportViewController()
         case .favorite:
-            return FavoriteViewController()
+            return FavoritesViewController()
         case .profile:
             return ProfileViewController()
         }
     }
-
 }

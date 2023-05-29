@@ -2,17 +2,19 @@
 //  ReportViewController.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 10/30/22.
+//  Created by Aleksandr Chebotarev on 5/16/23.
 //
 
 import UIKit
 
 class ReportViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
+    
+    let scrollableTabView: ScrollableTabView = {
+        let view = ScrollableTabView()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        return view
+    }()
 }
