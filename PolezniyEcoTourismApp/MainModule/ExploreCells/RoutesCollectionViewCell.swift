@@ -23,6 +23,7 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         label.textColor = UIColor(named: "DarkGrey")
         label.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
         return label
@@ -88,15 +89,6 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let cardTimeMetricLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
-        return label
-    }()
-    
     let informationView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -118,7 +110,7 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
         return label
     }()
     
@@ -135,7 +127,7 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
         return label
     }()
     
@@ -152,7 +144,7 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
         return label
     }()
     
@@ -189,7 +181,7 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         print("Save button tapped")
     }
     @objc private func shareCard() { print("Share button tapped") }
-
+    
     
     private func setupViews() {
         //Places Image
@@ -207,7 +199,6 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         addSubview(cardLengthMetricLabel)
         addSubview(cardTimeIcon)
         addSubview(cardTimeLabel)
-//        addSubview(cardTimeMetricLabel)
         //Metrics
         addSubview(cardTransportIcon)
         addSubview(cardTransportLabel)
@@ -219,90 +210,98 @@ class RoutesCollectionViewCell: UICollectionViewCell {
         addSubview(shareButton)
         addSubview(saveButton)
     }
-
+    
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            //Image constraints
+            // Image constraints
             cardPlacesImage.topAnchor.constraint(equalTo: topAnchor),
-            cardPlacesImage.leftAnchor.constraint(equalTo: leftAnchor),
-            cardPlacesImage.rightAnchor.constraint(equalTo: rightAnchor),
-            cardPlacesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -103),
-            //Buttons constraints
+            cardPlacesImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardPlacesImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cardPlacesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -136),
+            
+            // Buttons constraints
             shareButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            shareButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            shareButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            
             saveButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            saveButton.rightAnchor.constraint(equalTo: shareButton.leftAnchor, constant: -16),
-            //View constraints
+            saveButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -16),
+            
+            // View constraints
             informationView.topAnchor.constraint(equalTo: cardPlacesImage.topAnchor, constant: 336),
-            informationView.leftAnchor.constraint(equalTo: leftAnchor),
-            informationView.rightAnchor.constraint(equalTo: rightAnchor),
-            informationView.heightAnchor.constraint(equalToConstant: 158),
-            informationView.widthAnchor.constraint(equalToConstant: 358),
-            //Card Name constraints
+            informationView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            informationView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            // Card Name constraints
             cardNameTitle.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 16),
-            cardNameTitle.heightAnchor.constraint(equalToConstant: 20),
+            cardNameTitle.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            cardNameTitle.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -16),
             cardNameTitle.bottomAnchor.constraint(equalTo: cardLocationName.topAnchor, constant: -16),
-            cardNameTitle.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-            cardNameTitle.rightAnchor.constraint(equalTo: informationView.rightAnchor, constant: 16),
-            //Location constraints
+            
+            // Location constraints
             cardLocationIcon.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 19.5),
-            cardLocationIcon.bottomAnchor.constraint(equalTo: cardLengthIcon.topAnchor, constant: -25.5),
-            cardLocationIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 18),
+            cardLocationIcon.bottomAnchor.constraint(greaterThanOrEqualTo: cardLengthIcon.topAnchor, constant: -25.5),
+            cardLocationIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 18),
             
             cardLocationName.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 16),
             cardLocationName.bottomAnchor.constraint(equalTo: cardLengthLabel.topAnchor, constant: -16),
             cardLocationName.heightAnchor.constraint(equalToConstant: 17),
-            cardLocationName.leftAnchor.constraint(equalTo: cardLocationIcon.rightAnchor, constant: 6),
+            cardLocationName.leadingAnchor.constraint(equalTo: cardLocationIcon.trailingAnchor, constant: 6),
+            
             // Length and Time constraints
             cardLengthIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 25.5),
-            cardLengthIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
+            cardLengthIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
             cardLengthIcon.bottomAnchor.constraint(equalTo: cardTransportIcon.topAnchor, constant: -22),
             
             cardLengthLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardLengthLabel.leftAnchor.constraint(equalTo: cardLengthIcon.rightAnchor, constant: 4),
+            cardLengthLabel.leadingAnchor.constraint(equalTo: cardLengthIcon.trailingAnchor, constant: 4),
+            cardLengthLabel.heightAnchor.constraint(equalToConstant: 17),
             cardLengthLabel.bottomAnchor.constraint(equalTo: cardTransportIcon.topAnchor, constant: -16),
             
             cardLengthMetricLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardLengthMetricLabel.leftAnchor.constraint(equalTo: cardLengthLabel.rightAnchor, constant: 2),
+            cardLengthMetricLabel.leadingAnchor.constraint(equalTo: cardLengthLabel.trailingAnchor, constant: 2),
+            cardLengthMetricLabel.heightAnchor.constraint(equalToConstant: 17),
             cardLengthMetricLabel.bottomAnchor.constraint(equalTo: cardTransportIcon.topAnchor, constant: -16),
             
             cardTimeIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 19.5),
-            cardTimeIcon.leftAnchor.constraint(equalTo: cardLengthMetricLabel.rightAnchor, constant: 17.5),
+            cardTimeIcon.leadingAnchor.constraint(equalTo: cardLengthMetricLabel.trailingAnchor, constant: 17.5),
             cardTimeIcon.bottomAnchor.constraint(equalTo: cardBeautyIcon.topAnchor, constant: -19.5),
             
             cardTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardTimeLabel.leftAnchor.constraint(equalTo: cardTimeIcon.rightAnchor, constant: 5.5),
+            cardTimeLabel.leadingAnchor.constraint(equalTo: cardTimeIcon.trailingAnchor, constant: 5.5),
+            cardTimeLabel.heightAnchor.constraint(equalToConstant: 17),
             cardTimeLabel.bottomAnchor.constraint(equalTo: cardBeautyIcon.topAnchor, constant: -16),
-            
-//            cardTimeMetricLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-//            cardTimeMetricLabel.leftAnchor.constraint(equalTo: cardTimeLabel.rightAnchor, constant: 2),
-//            cardTimeMetricLabel.bottomAnchor.constraint(equalTo: cardBeautyIcon.topAnchor, constant: -16),
             
             // Metrics constraints
             cardTransportIcon.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
+            cardTransportIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            cardTransportIcon.heightAnchor.constraint(equalToConstant: 24),
             cardTransportIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardTransportIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
             
             cardTransportLabel.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 18),
+            cardTransportLabel.leadingAnchor.constraint(equalTo: cardTransportIcon.trailingAnchor, constant: 8),
+            cardTransportLabel.heightAnchor.constraint(equalToConstant: 20),
             cardTransportLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -18),
-            cardTransportLabel.leftAnchor.constraint(equalTo: cardTransportIcon.rightAnchor, constant: 8),
             
             cardBeautyIcon.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
+            cardBeautyIcon.leadingAnchor.constraint(equalTo: cardTransportLabel.trailingAnchor, constant: 16),
+            cardBeautyIcon.heightAnchor.constraint(equalToConstant: 24),
             cardBeautyIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardBeautyIcon.leftAnchor.constraint(equalTo: cardTransportLabel.rightAnchor, constant: 16),
             
             cardBeautyLabel.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 18),
+            cardBeautyLabel.leadingAnchor.constraint(equalTo: cardBeautyIcon.trailingAnchor, constant: 8),
+            cardBeautyLabel.heightAnchor.constraint(equalToConstant: 20),
             cardBeautyLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -18),
-            cardBeautyLabel.leftAnchor.constraint(equalTo: cardBeautyIcon.rightAnchor, constant: 8),
             
             cardPollutionIcon.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
+            cardPollutionIcon.leadingAnchor.constraint(equalTo: cardBeautyLabel.trailingAnchor, constant: 16),
+            cardPollutionIcon.heightAnchor.constraint(equalToConstant: 24),
             cardPollutionIcon.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -16),
-            cardPollutionIcon.leftAnchor.constraint(equalTo: cardBeautyLabel.rightAnchor, constant: 16),
             
             cardPollutionLabel.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 18),
-            cardPollutionLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -18),
-            cardPollutionLabel.leftAnchor.constraint(equalTo: cardPollutionIcon.rightAnchor, constant: 8)
+            cardPollutionLabel.leadingAnchor.constraint(equalTo: cardPollutionIcon.trailingAnchor, constant: 8),
+            cardPollutionLabel.heightAnchor.constraint(equalToConstant: 20),
+            cardPollutionLabel.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -18)
         ])
     }
 }

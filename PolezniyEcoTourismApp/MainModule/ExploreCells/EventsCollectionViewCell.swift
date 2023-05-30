@@ -9,6 +9,8 @@ import UIKit
 
 class EventsCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     let cardPlacesImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +25,6 @@ class EventsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
         label.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
@@ -106,8 +107,8 @@ class EventsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var saveButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.custom)
+    private lazy var saveButton: UIButton = {
+        let button = UIButton(type: .custom)
         let image = UIImage(named: "saveButton")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(image, for: .normal)
@@ -115,14 +116,16 @@ class EventsCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    lazy var shareButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.custom)
+    private lazy var shareButton: UIButton = {
+        let button = UIButton(type: .custom)
         let image = UIImage(named: "shareButton")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(shareCard), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -135,92 +138,95 @@ class EventsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Actions
+    
     @objc private func saveCard() {
         print("Save button tapped")
     }
-    @objc private func shareCard() { print("Share button tapped") }
-
+    
+    @objc private func shareCard() {
+        print("Share button tapped")
+    }
+    
+    // MARK: - Setup
     
     private func setupViews() {
-        //Places Image
         addSubview(cardPlacesImage)
-        //Information View
         addSubview(informationView)
-        //Text Attributes
         addSubview(cardNameTitle)
         addSubview(cardLocationIcon)
         addSubview(cardLocationName)
-        //Metrics
         addSubview(cardEventDateIcon)
         addSubview(cardEventDateLabel)
         addSubview(cardEventTimeIcon)
         addSubview(cardEventTimeLabel)
-        //Status
         addSubview(cardEventStatusLabel)
         addSubview(cardEventStatusIcon)
-        //Buttons
         addSubview(shareButton)
         addSubview(saveButton)
     }
-
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            //Image constraints
+            // Image constraints
             cardPlacesImage.topAnchor.constraint(equalTo: topAnchor),
-            cardPlacesImage.leftAnchor.constraint(equalTo: leftAnchor),
-            cardPlacesImage.rightAnchor.constraint(equalTo: rightAnchor),
-            cardPlacesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -103),
-            //Buttons constraints
+            cardPlacesImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cardPlacesImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cardPlacesImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -129),
+            
+            // Buttons constraints
             shareButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            shareButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            shareButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             saveButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            saveButton.rightAnchor.constraint(equalTo: shareButton.leftAnchor, constant: -16),
-            //View constraints
+            saveButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -16),
+            
+            // View constraints
             informationView.topAnchor.constraint(equalTo: cardPlacesImage.topAnchor, constant: 336),
-            informationView.leftAnchor.constraint(equalTo: leftAnchor),
-            informationView.rightAnchor.constraint(equalTo: rightAnchor),
-            informationView.heightAnchor.constraint(equalToConstant: 151),
-            informationView.widthAnchor.constraint(equalToConstant: 358),
-            //Card Name constraints
+            informationView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            informationView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            // Card Name constraints
             cardNameTitle.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 16),
+            cardNameTitle.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            cardNameTitle.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -16),
             cardNameTitle.bottomAnchor.constraint(equalTo: cardLocationName.topAnchor, constant: -16),
-            cardNameTitle.heightAnchor.constraint(equalToConstant: 20),
-            cardNameTitle.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-            cardNameTitle.rightAnchor.constraint(equalTo: informationView.rightAnchor, constant: 16),
-            //Location constraints
+            
+            // Location constraints
             cardLocationIcon.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 19.5),
-            cardLocationIcon.bottomAnchor.constraint(equalTo: cardEventDateIcon.topAnchor, constant: -21),
-            cardLocationIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 18),
+            cardLocationIcon.bottomAnchor.constraint(equalTo: cardEventDateIcon.topAnchor, constant: -23),
+            cardLocationIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 18),
             
             cardLocationName.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 16),
-            cardLocationName.bottomAnchor.constraint(equalTo: cardEventDateLabel.topAnchor, constant: -13.5),
+            cardLocationName.bottomAnchor.constraint(equalTo: cardEventDateLabel.topAnchor, constant: -16),
             cardLocationName.heightAnchor.constraint(equalToConstant: 17),
-            cardLocationName.leftAnchor.constraint(equalTo: cardLocationIcon.rightAnchor, constant: 4),
+            cardLocationName.leadingAnchor.constraint(equalTo: cardLocationIcon.trailingAnchor, constant: 6),
+            
             // Date and Time constraints
-            cardEventDateIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 21),
-            cardEventDateIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
-
-            cardEventDateLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 13.5),
-            cardEventDateLabel.leftAnchor.constraint(equalTo: cardEventDateIcon.rightAnchor, constant: 4),
+            cardEventDateIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 23),
+            cardEventDateIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            
+            cardEventDateLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardEventDateLabel.leadingAnchor.constraint(equalTo: cardEventDateIcon.trailingAnchor, constant: 4),
             cardEventDateLabel.heightAnchor.constraint(equalToConstant: 17),
             
-            cardEventTimeIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 17),
-            cardEventTimeIcon.leftAnchor.constraint(equalTo: cardEventDateLabel.rightAnchor, constant: 16),
+            cardEventTimeIcon.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 19.5),
+            cardEventTimeIcon.leadingAnchor.constraint(equalTo: cardEventDateLabel.trailingAnchor, constant: 16),
             
-            cardEventTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 13.5),
-            cardEventTimeLabel.leftAnchor.constraint(equalTo: cardEventTimeIcon.rightAnchor, constant: 4),
+            cardEventTimeLabel.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardEventTimeLabel.leadingAnchor.constraint(equalTo: cardEventTimeIcon.trailingAnchor, constant: 4),
             cardEventTimeLabel.heightAnchor.constraint(equalToConstant: 17),
+            
             // Status constraints
             cardEventStatusIcon.topAnchor.constraint(equalTo: cardEventDateIcon.bottomAnchor, constant: 23),
-            cardEventStatusIcon.leftAnchor.constraint(equalTo: informationView.leftAnchor, constant: 16),
+            cardEventStatusIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
             cardEventStatusIcon.heightAnchor.constraint(equalToConstant: 10),
+            cardEventStatusIcon.bottomAnchor.constraint(greaterThanOrEqualTo: informationView.bottomAnchor, constant: -16),
             
             cardEventStatusLabel.topAnchor.constraint(equalTo: cardEventDateLabel.bottomAnchor, constant: 16),
-            cardEventStatusLabel.leftAnchor.constraint(equalTo: cardEventStatusIcon.rightAnchor, constant: 4),
-            cardEventStatusLabel.heightAnchor.constraint(equalToConstant: 17)
-            
+            cardEventStatusLabel.leadingAnchor.constraint(equalTo: cardEventStatusIcon.trailingAnchor, constant: 4),
+            cardEventStatusLabel.heightAnchor.constraint(equalToConstant: 17),
+            cardEventStatusLabel.bottomAnchor.constraint(greaterThanOrEqualTo: informationView.bottomAnchor, constant: -16)
         ])
     }
 }

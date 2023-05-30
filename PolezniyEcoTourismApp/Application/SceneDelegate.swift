@@ -11,11 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
@@ -29,7 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func runMainFlow() {
         DispatchQueue.main.async {
             self.window?.rootViewController = TabBarConfigurator().configure()
-//            self.window?.backgroundColor = UIColor(named: "Background")
+            // Set the navigation bar title color
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "DarkGrey") ?? .black]
         }
     }
     

@@ -8,13 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    let scrollableTabView: ScrollableTabView = {
-        let view = ScrollableTabView()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        return view
-    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

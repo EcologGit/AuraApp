@@ -118,6 +118,4 @@ public class ScrollableTabView: UIView {
         // animation handled here
         scrollView.setContentOffset(CGPoint(x: actualOffset, y: 0.0), animated: true)
     }
-
-
 }

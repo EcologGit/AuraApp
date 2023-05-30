@@ -70,6 +70,8 @@ class ExploreViewController: UIViewController {
         scrollableTabView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        // Register collection view cells
         collectionView.register(PlacesCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(RoutesCollectionViewCell.self, forCellWithReuseIdentifier: "pcell")
         collectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: "ecell")
@@ -77,18 +79,27 @@ class ExploreViewController: UIViewController {
     }
     
     private func layout() {
+        // Add scrollableTabView and collectionView to the view
         view.addSubview(scrollableTabView)
         view.addSubview(collectionView)
         
-        scrollableTabView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1).isActive = true
-        scrollableTabView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1).isActive = true
-        view.trailingAnchor.constraint(equalToSystemSpacingAfter: scrollableTabView.trailingAnchor, multiplier: 1).isActive = true
+        // Set constraints for scrollableTabView
+        NSLayoutConstraint.activate([
+            scrollableTabView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            scrollableTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            scrollableTabView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
+        ])
         
-        collectionView.topAnchor.constraint(equalToSystemSpacingBelow: scrollableTabView.bottomAnchor, multiplier: 1).isActive = true
-        collectionView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1).isActive = true
-        view.trailingAnchor.constraint(equalToSystemSpacingAfter: collectionView.trailingAnchor, multiplier: 1).isActive = true
-        view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: collectionView.bottomAnchor, multiplier: 0).isActive = true
+        // Set constraints for collectionView
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: scrollableTabView.bottomAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)
+        ])
     }
+    
+    
     
     // MARK: - Data
     private func loadData() {
@@ -187,8 +198,63 @@ extension ExploreViewController: ScrollableTabViewDelegate {
 
 // MARK: - UICollectionViewDelegate
 
+// MARK: - UICollectionViewDelegate
+
 extension ExploreViewController: UICollectionViewDelegate {
-    // Implement delegate methods if needed
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let card = dataForSelectedCategory[indexPath.row]
+        
+        switch card.category {
+        case .places:
+            let placeCard = card as! ExplorePlaceCardData
+            // Show detailed information for the placeCard
+            showDetailScreen(for: placeCard)
+        case .routes:
+            let routeCard = card as! ExploreRouteCardData
+            // Show detailed information for the routeCard
+//            showDetailScreen(for: routeCard)
+        case .events:
+            let eventCard = card as! ExploreEventCardData
+            // Show detailed information for the eventCard
+//            showDetailScreen(for: eventCard)
+        case .garbagePoints:
+            let garbagePointCard = card as! ExploreGarbagePointCardData
+            // Show detailed information for the garbagePointCard
+//            showDetailScreen(for: garbagePointCard)
+        }
+    }
+    
+    // MARK: - Detail Screen Presentation
+    private func showDetailScreen(for placeCard: ExplorePlaceCardData) {
+        let detailViewController = DetailPlaceViewController()
+        detailViewController.cardData = placeCard
+        let navigationController = UINavigationController(rootViewController: detailViewController)
+            present(navigationController, animated: true, completion: nil)
+    }
+
+//    private func showDetailScreen(for placeCard: ExplorePlaceCardData) {
+//        // Create and present the detail view controller for the selected placeCard
+//        let detailViewController = DetailPlaceViewController(place: placeCard.place)
+//        navigationController?.pushViewController(detailViewController, animated: true)
+//    }
+    
+//    private func showDetailScreen(for routeCard: ExploreRouteCardData) {
+//        // Create and present the detail view controller for the selected routeCard
+//        let detailViewController = RouteDetailViewController(route: routeCard.route)
+//        navigationController?.pushViewController(detailViewController, animated: true)
+//    }
+//
+//    private func showDetailScreen(for eventCard: ExploreEventCardData) {
+//        // Create and present the detail view controller for the selected eventCard
+//        let detailViewController = EventDetailViewController(event: eventCard.event)
+//        navigationController?.pushViewController(detailViewController, animated: true)
+//    }
+//
+//    private func showDetailScreen(for garbagePointCard: ExploreGarbagePointCardData) {
+//        // Create and present the detail view controller for the selected garbagePointCard
+//        let detailViewController = GarbagePointDetailViewController(garbagePoint: garbagePointCard.garbagePoint)
+//        navigationController?.pushViewController(detailViewController, animated: true)
+//    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -278,8 +344,17 @@ extension ExploreViewController: UICollectionViewDataSource {
         cell.cardLocationName.text = card.event.adress
         cell.cardLocationIcon.image = card.cardLocationIcon
         cell.cardEventDateIcon.image = card.cardEventDateIcon
-        cell.cardEventDateLabel.text = dateFormatter.string(from: card.event.datetimeStart)
-        cell.cardEventTimeLabel.text = dateFormatter.string(from: card.event.datetimeStart)
+        
+        let dateString = dateFormatter.string(from: card.event.datetimeStart)
+        let components = dateString.components(separatedBy: ", ")
+        if let date = components.first {
+            cell.cardEventDateLabel.text = date
+        }
+        
+        if let time = components.last {
+            cell.cardEventTimeLabel.text = time
+        }
+        
         cell.cardEventTimeIcon.image = card.cardEventTimeIcon
         cell.cardEventStatusLabel.text = card.event.status
         
@@ -358,23 +433,20 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout {
         switch card.category {
         case .places:
             // Calculate and return the size for the PlacesCollectionViewCell
-            let height: CGFloat = 483 - spacing
+            let height: CGFloat = 483
             return CGSize(width: width, height: height)
         case .routes:
             // Calculate and return the size for the RoutesCollectionViewCell
-            let height: CGFloat =  516 - spacing
+            let height: CGFloat =  516 + spacing
             return CGSize(width: width, height: height)
         case .events:
             // Calculate and return the size for the EventsCollectionViewCell
-            let height: CGFloat =  509 - spacing
+            let height: CGFloat =  509
             return CGSize(width: width, height: height)
         case .garbagePoints:
             // Calculate and return the size for the GarbagePointsCollectionViewCell
-            let height: CGFloat = 516 - spacing
+            let height: CGFloat = 516 + spacing
             return CGSize(width: width, height: height)
         }
     }
 }
-
-
-
