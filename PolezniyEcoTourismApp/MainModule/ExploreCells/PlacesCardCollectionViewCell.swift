@@ -15,7 +15,7 @@ class PlacesCollectionViewCell: UICollectionViewCell {
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         image.backgroundColor = .none
-        image.layer.cornerRadius = 20
+        image.layer.cornerRadius = 22
         return image
     }()
     

@@ -1,22 +1,18 @@
 //
-//  DetailPlaceViewController.swift
+//  DetailRouteViewController.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 5/30/23.
+//  Created by Aleksandr Chebotarev on 6/3/23.
 //
 
 import UIKit
 
-class DetailPlaceViewController: UIViewController {
-    
-    var placeID: Int?
-    
+class DetailRouteViewController: UIViewController {
+    var routeID: Int?
     // MARK: - Properties
-    var placeDetail: PlaceDetail?
-    // MARK: - Subviews
+    var routeDetail: RoutesDetail?
     let rateView = RateView()
     let wasteView = WasteView()
-    // Create a UIScrollView
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +54,7 @@ class DetailPlaceViewController: UIViewController {
         return image
     }()
     
-    let cardCoordintateIcon: UIImageView = {
+    let cardStartCoordintateIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -66,7 +62,7 @@ class DetailPlaceViewController: UIViewController {
         return image
     }()
     
-    let cardCoordintateX: UILabel = {
+    let cardStartCoordintateX: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +71,7 @@ class DetailPlaceViewController: UIViewController {
         return label
     }()
     
-    let cardComma: UILabel = {
+    let cardStartComma: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +80,85 @@ class DetailPlaceViewController: UIViewController {
         return label
     }()
     
-    let cardCoordintateY: UILabel = {
+    let cardStartCoordintateY: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardFinishCoordintateIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardFinishCoordintateX: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardFinishComma: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardFinishCoordintateY: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardLengthIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardLengthLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardLengthMetricLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    let cardTimeIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardTimeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -139,36 +213,33 @@ class DetailPlaceViewController: UIViewController {
         return label
     }()
     
-    @objc private func saveCard() { print("Save button tapped") }
-    @objc private func shareCard() { print("Share button tapped") }
-    @objc private func showMap() { print("Show map button tapped") }
-    @objc private func createReport() { print("Create report button tapped") }
-    // Add additional subviews as per your card's detailed information
-    
-    // MARK: - View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         loadCardDetails()
     }
     
-    // MARK: - UI Setup
-    
-    private func setupUI() {
-        self.title = "Место"
+    func setupUI() {
+        title = "Маршруты"
         view.backgroundColor = UIColor(named: "Background")
-        // Add subviews
-        // Add the scrollView to the view hierarchy
         view.addSubview(scrollView)
         scrollView.addSubview(cardPlacesImage)
         scrollView.addSubview(cardNameTitle)
         scrollView.addSubview(cardLocationName)
         scrollView.addSubview(cardLocationIcon)
-        scrollView.addSubview(cardCoordintateIcon)
-        scrollView.addSubview(cardCoordintateX)
-        scrollView.addSubview(cardComma)
-        scrollView.addSubview(cardCoordintateY)
+        scrollView.addSubview(cardStartCoordintateIcon)
+        scrollView.addSubview(cardStartCoordintateX)
+        scrollView.addSubview(cardStartComma)
+        scrollView.addSubview(cardStartCoordintateY)
+        scrollView.addSubview(cardFinishCoordintateIcon)
+        scrollView.addSubview(cardFinishCoordintateX)
+        scrollView.addSubview(cardFinishComma)
+        scrollView.addSubview(cardFinishCoordintateY)
+        scrollView.addSubview(cardLengthIcon)
+        scrollView.addSubview(cardLengthLabel)
+        scrollView.addSubview(cardLengthMetricLabel)
+        scrollView.addSubview(cardTimeIcon)
+        scrollView.addSubview(cardTimeLabel)
         scrollView.addSubview(mapButton)
         scrollView.addSubview(saveButton)
         scrollView.addSubview(reportButton)
@@ -176,9 +247,7 @@ class DetailPlaceViewController: UIViewController {
         scrollView.addSubview(cardDescription)
         scrollView.addSubview(rateView)
         scrollView.addSubview(wasteView)
-        
         NSLayoutConstraint.activate([
-            // Pin scrollView to the edges of the view
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -201,29 +270,58 @@ class DetailPlaceViewController: UIViewController {
             cardLocationName.topAnchor.constraint(equalTo: cardNameTitle.bottomAnchor, constant: 16),
             cardLocationName.leadingAnchor.constraint(equalTo: cardLocationIcon.trailingAnchor, constant: 6),
             
-            cardCoordintateIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 23),
-            cardCoordintateIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            cardStartCoordintateIcon.topAnchor.constraint(equalTo: cardLocationIcon.bottomAnchor, constant: 23),
+            cardStartCoordintateIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             
-            cardCoordintateX.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardCoordintateX.leadingAnchor.constraint(equalTo: cardCoordintateIcon.trailingAnchor, constant: 4),
+            cardStartCoordintateX.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardStartCoordintateX.leadingAnchor.constraint(equalTo: cardStartCoordintateIcon.trailingAnchor, constant: 4),
             
-            cardComma.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardComma.heightAnchor.constraint(equalToConstant: 17),
-            cardComma.leadingAnchor.constraint(equalTo: cardCoordintateX.trailingAnchor, constant: 1),
+            cardStartComma.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardStartComma.heightAnchor.constraint(equalToConstant: 17),
+            cardStartComma.leadingAnchor.constraint(equalTo: cardStartCoordintateX.trailingAnchor, constant: 1),
             
-            cardCoordintateY.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
-            cardCoordintateY.leadingAnchor.constraint(equalTo: cardComma.trailingAnchor, constant: 4),
+            cardStartCoordintateY.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
+            cardStartCoordintateY.leadingAnchor.constraint(equalTo: cardStartComma.trailingAnchor, constant: 4),
             
-            mapButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            cardFinishCoordintateIcon.topAnchor.constraint(equalTo: cardStartCoordintateIcon.bottomAnchor, constant: 23),
+            cardFinishCoordintateIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            
+            cardFinishCoordintateX.topAnchor.constraint(equalTo: cardStartCoordintateX.bottomAnchor, constant: 16),
+            cardFinishCoordintateX.leadingAnchor.constraint(equalTo: cardFinishCoordintateIcon.trailingAnchor, constant: 4),
+            
+            cardFinishComma.topAnchor.constraint(equalTo: cardStartCoordintateX.bottomAnchor, constant: 16),
+            cardFinishComma.heightAnchor.constraint(equalToConstant: 17),
+            cardFinishComma.leadingAnchor.constraint(equalTo: cardFinishCoordintateX.trailingAnchor, constant: 1),
+            
+            cardFinishCoordintateY.topAnchor.constraint(equalTo: cardStartCoordintateX.bottomAnchor, constant: 16),
+            cardFinishCoordintateY.leadingAnchor.constraint(equalTo: cardFinishComma.trailingAnchor, constant: 4),
+            
+            cardLengthIcon.topAnchor.constraint(equalTo: cardFinishCoordintateIcon.bottomAnchor, constant: 25.5),
+            cardLengthIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            
+            cardLengthLabel.topAnchor.constraint(equalTo: cardFinishCoordintateX.bottomAnchor, constant: 16),
+            cardLengthLabel.leadingAnchor.constraint(equalTo: cardLengthIcon.trailingAnchor, constant: 4),
+            
+            cardLengthMetricLabel.topAnchor.constraint(equalTo: cardFinishCoordintateX.bottomAnchor, constant: 16),
+            cardLengthMetricLabel.heightAnchor.constraint(equalToConstant: 17),
+            cardLengthMetricLabel.leadingAnchor.constraint(equalTo: cardLengthLabel.trailingAnchor, constant: 2),
+            
+            cardTimeIcon.topAnchor.constraint(equalTo: cardFinishCoordintateX.bottomAnchor, constant: 19.5),
+            cardTimeIcon.leadingAnchor.constraint(equalTo: cardLengthMetricLabel.trailingAnchor, constant: 17.5),
+            
+            cardTimeLabel.topAnchor.constraint(equalTo: cardFinishCoordintateX.bottomAnchor, constant: 16),
+            cardTimeLabel.leadingAnchor.constraint(equalTo: cardTimeIcon.trailingAnchor, constant: 4),
+            
+            mapButton.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
             mapButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             
-            saveButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            saveButton.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
             saveButton.leadingAnchor.constraint(equalTo: mapButton.trailingAnchor, constant: 16),
             
-            reportButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            reportButton.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
             reportButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: 16),
             
-            shareButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            shareButton.topAnchor.constraint(equalTo: cardLengthLabel.bottomAnchor, constant: 16),
             shareButton.leadingAnchor.constraint(equalTo: reportButton.trailingAnchor, constant: 16),
             
             cardDescription.topAnchor.constraint(equalTo: mapButton.bottomAnchor, constant: 16),
@@ -240,16 +338,15 @@ class DetailPlaceViewController: UIViewController {
             wasteView.topAnchor.constraint(equalTo: rateView.bottomAnchor, constant: 16),
             wasteView.heightAnchor.constraint(equalToConstant: 292),
             wasteView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
-            
         ])
         
     }
-
+    
     private func loadCardDetails() {
-        guard let placeID = placeID else { return }
+        guard let routeID = routeID else { return }
 
         // Construct the URL with the placeID
-        let urlString = "\(apiLink)/review/places/\(placeID)"
+        let urlString = "\(apiLink)/review/routes/\(routeID)"
         guard let url = URL(string: urlString) else { return }
 
         // Fetch place details using URLSession
@@ -265,17 +362,17 @@ class DetailPlaceViewController: UIViewController {
             do {
                 // Decode the JSON response into a PlaceDetail object
                 let decoder = JSONDecoder()
-                let placeDetail = try decoder.decode(PlaceDetail.self, from: data)
+                let routeDetail = try decoder.decode(RoutesDetail.self, from: data)
 
                 DispatchQueue.main.async {
-                    self?.displayCard(with: placeDetail)
+                    self?.displayCard(with: routeDetail)
                 }
             } catch {
                 print("Error decoding place details:", error)
             }
         }.resume()
     }
-
+    
     private func loadImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             if let error = error {
@@ -293,24 +390,31 @@ class DetailPlaceViewController: UIViewController {
             }
         }.resume()
     }
-
-    // MARK: - Display Card Details
     
-    private func displayCard(with placeDetail: PlaceDetail) {
-        if let photoURLString = placeDetail.objectInfo.photo, let photoURL = URL(string: apiLink + photoURLString) {
+    
+    private func displayCard(with routeDetail: RoutesDetail) {
+        if let photoURLString = routeDetail.objectInfo.photo, let photoURL = URL(string: apiLink + photoURLString) {
             self.loadImage(from: photoURL)
         } else {
             self.cardPlacesImage.image = UIImage(named: "noImage")
         }
-
-        cardNameTitle.text = placeDetail.objectInfo.name
+        cardNameTitle.text = routeDetail.objectInfo.name
         cardLocationIcon.image = UIImage(named: "locationIcon")
-        cardLocationName.text = placeDetail.objectInfo.locality
-        cardCoordintateIcon.image = UIImage(named: "coordinateIcon")
-        cardComma.text = ","
-        cardCoordintateX.text = placeDetail.objectInfo.longitudeE
-        cardCoordintateY.text = placeDetail.objectInfo.latitudeN
-        cardDescription.text = placeDetail.objectInfo.description
+        cardLocationName.text = routeDetail.objectInfo.locality
+        cardStartCoordintateIcon.image = UIImage(named: "routeStartIcon")
+        cardStartCoordintateX.text = routeDetail.objectInfo.startE
+        cardStartComma.text = ","
+        cardStartCoordintateY.text = routeDetail.objectInfo.startN
+        cardFinishCoordintateIcon.image = UIImage(named: "routeFinishIcon")
+        cardFinishCoordintateX.text = routeDetail.objectInfo.endE
+        cardFinishComma.text = ","
+        cardFinishCoordintateY.text = routeDetail.objectInfo.endN
+        cardLengthIcon.image = UIImage(named: "routeLengthIcon")
+        cardLengthLabel.text = String(routeDetail.objectInfo.length)
+        cardLengthMetricLabel.text = "км"
+        cardTimeIcon.image = UIImage(named: "routeTimeIcon")
+        cardTimeLabel.text = routeDetail.objectInfo.duration
+        cardDescription.text = routeDetail.objectInfo.description
         rateView.rateLabel.text = "Рейтинг"
         rateView.cardTransportIcon.image = UIImage(named: "transportIcon")
         rateView.cardTransportLabel.text = "Доступность"
@@ -318,9 +422,9 @@ class DetailPlaceViewController: UIViewController {
         rateView.cardBeautyLabel.text = "Красота"
         rateView.cardPollutionIcon.image = UIImage(named: "pollutionIcon")
         rateView.cardPollutionLabel.text = "Чистота"
-        rateView.cardTransportRateLabel.text = String(placeDetail.objectInfo.avgAvailability ?? 0)
-        rateView.cardBeautyRateLabel.text = String(placeDetail.objectInfo.avgBeauty ?? 0)
-        rateView.cardPollutionRateLabel.text = String(placeDetail.objectInfo.avgPurity ?? 0)
+        rateView.cardTransportRateLabel.text = String(routeDetail.objectInfo.avgAvailability ?? 0)
+        rateView.cardBeautyRateLabel.text = String(routeDetail.objectInfo.avgBeauty ?? 0)
+        rateView.cardPollutionRateLabel.text = String(routeDetail.objectInfo.avgPurity ?? 0)
         wasteView.wasteLabel.text = "Собранные отходы"
         wasteView.cardPlasticIcon.image = UIImage(named: "plasticIcon")
         wasteView.cardPlasticLabel.text = "Пластик"
@@ -347,4 +451,10 @@ class DetailPlaceViewController: UIViewController {
         wasteView.cardGlassWeightLabel.text = "0.0"
         wasteView.cardGlassWeightMetricLabel.text = "кг"
     }
+    
+    @objc private func saveCard() { print("Save button tapped") }
+    @objc private func shareCard() { print("Share button tapped") }
+    @objc private func showMap() { print("Show map button tapped") }
+    @objc private func createReport() { print("Create report button tapped") }
 }
+

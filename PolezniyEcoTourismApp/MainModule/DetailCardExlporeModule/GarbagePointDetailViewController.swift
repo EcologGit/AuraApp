@@ -1,21 +1,18 @@
 //
-//  DetailPlaceViewController.swift
+//  GarbagePointDetailViewController.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 5/30/23.
+//  Created by Aleksandr Chebotarev on 6/4/23.
 //
 
 import UIKit
 
-class DetailPlaceViewController: UIViewController {
-    
-    var placeID: Int?
+class GarbagePointDetailViewController: UIViewController {
     
     // MARK: - Properties
-    var placeDetail: PlaceDetail?
+    var garbagePointDetail: GarbagePointDetails?
+    var garbagePointID: Int?
     // MARK: - Subviews
-    let rateView = RateView()
-    let wasteView = WasteView()
     // Create a UIScrollView
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -93,6 +90,23 @@ class DetailPlaceViewController: UIViewController {
         return label
     }()
     
+    let cardWorkTimeIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardWorkTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
     lazy var mapButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
         let image = UIImage(named: "mapButton")
@@ -139,6 +153,41 @@ class DetailPlaceViewController: UIViewController {
         return label
     }()
     
+    let wasteLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
+        return label
+    }()
+    
+    let informationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 22
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let cardWastTypeIcon: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let cardWasteTypeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textColor = UIColor(named: "DarkGrey")
+        label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
     @objc private func saveCard() { print("Save button tapped") }
     @objc private func shareCard() { print("Share button tapped") }
     @objc private func showMap() { print("Show map button tapped") }
@@ -169,13 +218,17 @@ class DetailPlaceViewController: UIViewController {
         scrollView.addSubview(cardCoordintateX)
         scrollView.addSubview(cardComma)
         scrollView.addSubview(cardCoordintateY)
+        scrollView.addSubview(cardWorkTimeIcon)
+        scrollView.addSubview(cardWorkTimeLabel)
         scrollView.addSubview(mapButton)
         scrollView.addSubview(saveButton)
         scrollView.addSubview(reportButton)
         scrollView.addSubview(shareButton)
         scrollView.addSubview(cardDescription)
-        scrollView.addSubview(rateView)
-        scrollView.addSubview(wasteView)
+        scrollView.addSubview(informationView)
+        scrollView.addSubview(wasteLabel)
+        scrollView.addSubview(cardWastTypeIcon)
+        scrollView.addSubview(cardWasteTypeLabel)
         
         NSLayoutConstraint.activate([
             // Pin scrollView to the edges of the view
@@ -214,137 +267,124 @@ class DetailPlaceViewController: UIViewController {
             cardCoordintateY.topAnchor.constraint(equalTo: cardLocationName.bottomAnchor, constant: 16),
             cardCoordintateY.leadingAnchor.constraint(equalTo: cardComma.trailingAnchor, constant: 4),
             
-            mapButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            cardWorkTimeIcon.topAnchor.constraint(equalTo: cardCoordintateIcon.bottomAnchor, constant: 23),
+            cardWorkTimeIcon.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            
+            cardWorkTimeLabel.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            cardWorkTimeLabel.leadingAnchor.constraint(equalTo: cardWorkTimeIcon.trailingAnchor, constant: 4),
+            
+            mapButton.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
             mapButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             
-            saveButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            saveButton.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
             saveButton.leadingAnchor.constraint(equalTo: mapButton.trailingAnchor, constant: 16),
             
-            reportButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            reportButton.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
             reportButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: 16),
             
-            shareButton.topAnchor.constraint(equalTo: cardCoordintateX.bottomAnchor, constant: 16),
+            shareButton.topAnchor.constraint(equalTo: cardWorkTimeLabel.bottomAnchor, constant: 16),
             shareButton.leadingAnchor.constraint(equalTo: reportButton.trailingAnchor, constant: 16),
             
             cardDescription.topAnchor.constraint(equalTo: mapButton.bottomAnchor, constant: 16),
             cardDescription.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             cardDescription.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
             
-            rateView.topAnchor.constraint(equalTo: cardDescription.bottomAnchor, constant: 16),
-            rateView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            rateView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-            rateView.heightAnchor.constraint(equalToConstant: 172),
+            informationView.topAnchor.constraint(equalTo: cardDescription.bottomAnchor, constant: 16),
+            informationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            informationView.heightAnchor.constraint(equalToConstant: 92),
+            informationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            informationView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
             
-            wasteView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            wasteView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-            wasteView.topAnchor.constraint(equalTo: rateView.bottomAnchor, constant: 16),
-            wasteView.heightAnchor.constraint(equalToConstant: 292),
-            wasteView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            wasteLabel.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 16),
+            wasteLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            
+            cardWastTypeIcon.topAnchor.constraint(equalTo: wasteLabel.bottomAnchor, constant: 16),
+            cardWastTypeIcon.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 16),
+            
+            cardWasteTypeLabel.topAnchor.constraint(equalTo: wasteLabel.bottomAnchor, constant: 18),
+            cardWasteTypeLabel.leadingAnchor.constraint(equalTo: cardWastTypeIcon.trailingAnchor, constant: 16),
             
         ])
         
     }
-
+    
     private func loadCardDetails() {
-        guard let placeID = placeID else { return }
-
+        guard let garbagePointID = garbagePointID else { return }
+        
         // Construct the URL with the placeID
-        let urlString = "\(apiLink)/review/places/\(placeID)"
+        let urlString = "\(apiLink)/review/sortPoints/\(garbagePointID)"
         guard let url = URL(string: urlString) else { return }
-
+        
         // Fetch place details using URLSession
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             if let error = error {
                 print("Error fetching place details:", error)
                 return
             }
-
+            
             // Check if data is available
             guard let data = data else { return }
-
+            
             do {
                 // Decode the JSON response into a PlaceDetail object
                 let decoder = JSONDecoder()
-                let placeDetail = try decoder.decode(PlaceDetail.self, from: data)
-
+                let pointDetail = try decoder.decode(GarbagePointDetails.self, from: data)
+                
                 DispatchQueue.main.async {
-                    self?.displayCard(with: placeDetail)
+                    self?.displayCard(with: pointDetail)
                 }
             } catch {
                 print("Error decoding place details:", error)
             }
         }.resume()
     }
-
+    
     private func loadImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             if let error = error {
                 print("Error loading image:", error)
                 return
             }
-
+            
             guard let data = data, let image = UIImage(data: data) else {
                 print("Invalid image data")
                 return
             }
-
+            
             DispatchQueue.main.async {
                 self?.cardPlacesImage.image = image
             }
         }.resume()
     }
-
+    
     // MARK: - Display Card Details
     
-    private func displayCard(with placeDetail: PlaceDetail) {
-        if let photoURLString = placeDetail.objectInfo.photo, let photoURL = URL(string: apiLink + photoURLString) {
+    private func displayCard(with pointDetail: GarbagePointDetails) {
+        if let photoURLString = pointDetail.photo, let photoURL = URL(string: apiLink + photoURLString) {
             self.loadImage(from: photoURL)
         } else {
             self.cardPlacesImage.image = UIImage(named: "noImage")
         }
-
-        cardNameTitle.text = placeDetail.objectInfo.name
+        cardNameTitle.text = pointDetail.name
         cardLocationIcon.image = UIImage(named: "locationIcon")
-        cardLocationName.text = placeDetail.objectInfo.locality
+        cardLocationName.text = pointDetail.locality
         cardCoordintateIcon.image = UIImage(named: "coordinateIcon")
         cardComma.text = ","
-        cardCoordintateX.text = placeDetail.objectInfo.longitudeE
-        cardCoordintateY.text = placeDetail.objectInfo.latitudeN
-        cardDescription.text = placeDetail.objectInfo.description
-        rateView.rateLabel.text = "Рейтинг"
-        rateView.cardTransportIcon.image = UIImage(named: "transportIcon")
-        rateView.cardTransportLabel.text = "Доступность"
-        rateView.cardBeautyIcon.image = UIImage(named: "beautyIcon")
-        rateView.cardBeautyLabel.text = "Красота"
-        rateView.cardPollutionIcon.image = UIImage(named: "pollutionIcon")
-        rateView.cardPollutionLabel.text = "Чистота"
-        rateView.cardTransportRateLabel.text = String(placeDetail.objectInfo.avgAvailability ?? 0)
-        rateView.cardBeautyRateLabel.text = String(placeDetail.objectInfo.avgBeauty ?? 0)
-        rateView.cardPollutionRateLabel.text = String(placeDetail.objectInfo.avgPurity ?? 0)
-        wasteView.wasteLabel.text = "Собранные отходы"
-        wasteView.cardPlasticIcon.image = UIImage(named: "plasticIcon")
-        wasteView.cardPlasticLabel.text = "Пластик"
-        wasteView.cardPlasticWeightLabel.text = "0.0"
-        wasteView.cardPlasticWeightMetricLabel.text = "кг"
-        wasteView.cardBatteryIcon.image = UIImage(named: "batteriesIcon")
-        wasteView.cardBatteryLabel.text = "Батарейки"
-        wasteView.cardBatteryWeightLabel.text = "0.0"
-        wasteView.cardBatteryWeightMetricLabel.text = "кг"
-        wasteView.cardBulbIcon.image = UIImage(named: "bulbsIcon")
-        wasteView.cardBulbLabel.text = "Лампочки"
-        wasteView.cardBulbWeightLabel.text = "0.0"
-        wasteView.cardBulbWeightMetricLabel.text = "кг"
-        wasteView.cardPaperIcon.image = UIImage(named: "papersIcon")
-        wasteView.cardPaperLabel.text = "Бумага"
-        wasteView.cardPaperWeightLabel.text = "0.0"
-        wasteView.cardPaperWeightMetricLabel.text = "кг"
-        wasteView.cardMetallIcon.image = UIImage(named: "metalsIcon")
-        wasteView.cardMetallLabel.text = "Металл"
-        wasteView.cardMetallWeightLabel.text = "0.0"
-        wasteView.cardMetallWeightMetricLabel.text = "кг"
-        wasteView.cardGlassIcon.image = UIImage(named: "glassIcon")
-        wasteView.cardGlassLabel.text = "Стекло"
-        wasteView.cardGlassWeightLabel.text = "0.0"
-        wasteView.cardGlassWeightMetricLabel.text = "кг"
+        cardCoordintateX.text = pointDetail.longitudeE
+        cardCoordintateY.text = pointDetail.latitudeN
+        cardDescription.text = pointDetail.description
+        cardWorkTimeIcon.image = UIImage(named: "timeIcon")
+        cardWorkTimeLabel.text = pointDetail.schedule
+        wasteLabel.text = "Типы отходов"
+        if let wasteTypeName = pointDetail.wastTypes.first?.name {
+            if wasteTypeName == "Крышечки" {
+                cardWastTypeIcon.image = UIImage(named: "plasticIcon")
+                cardWasteTypeLabel.text = wasteTypeName
+            }  else if wasteTypeName == "Батарейки" {
+                cardWastTypeIcon.image = UIImage(named: "batteriesIcon")
+                cardWasteTypeLabel.text = wasteTypeName
+            }
+        }
     }
 }
+

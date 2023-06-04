@@ -7,46 +7,7 @@
 
 import UIKit
 
-//class Parser {
-//    static let shared = Parser()
-//
-//    // Function to parse the JSON data for places and routes
-//    func parseData<T: Codable>(from url: URL, completion: @escaping ([T]?) -> Void) {
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: url) { (data, response, error) in
-//            if let error = error {
-//                print("Error fetching data: \(error.localizedDescription)")
-//                completion(nil)
-//                return
-//            }
-//
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  httpResponse.statusCode == 200,
-//                  let data = data else {
-//                print("Invalid response")
-//                completion(nil)
-//                return
-//            }
-//
-//            do {
-//                let decoder = JSONDecoder()
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//                decoder.dateDecodingStrategy = .formatted(dateFormatter)
-//                let parsedData = try decoder.decode([T].self, from: data)
-//                DispatchQueue.main.async {
-//                    completion(parsedData)
-//                }
-//            } catch {
-//                print("Error decoding JSON: \(error.localizedDescription)")
-//                completion(nil)
-//            }
-//        }
-//
-//        task.resume()
-//    }
-//}
-
+let apiLink = "http://81.163.30.36:8000"
 class Parser {
     static let shared = Parser()
     

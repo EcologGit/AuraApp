@@ -1,8 +1,8 @@
 //
-//  ActivityData.swift
+//  ActivityCategory.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 5/17/23.
+//  Created by Aleksandr Chebotarev on 6/2/23.
 //
 
 import UIKit

@@ -106,7 +106,7 @@ class ExploreViewController: UIViewController {
         scrollableTabView.setup(tabs: tabTiles, selectedIndex: 0)
         
         // Load places data
-        guard let placesURL = URL(string: "http://81.163.30.36:8000/review/places/") else {
+        guard let placesURL = URL(string: "\(apiLink)/review/places/") else {
             print("Invalid URL")
             return
         }
@@ -127,7 +127,7 @@ class ExploreViewController: UIViewController {
         }
         
         // Load routes data
-        guard let routesURL = URL(string: "http://81.163.30.36:8000/review/routes/") else {
+        guard let routesURL = URL(string: "\(apiLink)/review/routes/") else {
             print("Invalid URL")
             return
         }
@@ -144,7 +144,7 @@ class ExploreViewController: UIViewController {
         }
         
         // Load events data
-        guard let eventsURL = URL(string: "http://81.163.30.36:8000/review/events/") else {
+        guard let eventsURL = URL(string: "\(apiLink)/review/events/") else {
             print("Invalid URL")
             return
         }
@@ -161,7 +161,7 @@ class ExploreViewController: UIViewController {
         }
         
         // Load garbagePoints data
-        guard let garbagePointsURL = URL(string: "http://81.163.30.36:8000/review/sortPoints/") else {
+        guard let garbagePointsURL = URL(string: "\(apiLink)/review/sortPoints/") else {
             print("Invalid URL")
             return
         }
@@ -198,8 +198,6 @@ extension ExploreViewController: ScrollableTabViewDelegate {
 
 // MARK: - UICollectionViewDelegate
 
-// MARK: - UICollectionViewDelegate
-
 extension ExploreViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = dataForSelectedCategory[indexPath.row]
@@ -212,49 +210,46 @@ extension ExploreViewController: UICollectionViewDelegate {
         case .routes:
             let routeCard = card as! ExploreRouteCardData
             // Show detailed information for the routeCard
-//            showDetailScreen(for: routeCard)
+            showDetailRouteScreen(for: routeCard)
         case .events:
             let eventCard = card as! ExploreEventCardData
             // Show detailed information for the eventCard
-//            showDetailScreen(for: eventCard)
+            showDetailEventScreen(for: eventCard)
         case .garbagePoints:
             let garbagePointCard = card as! ExploreGarbagePointCardData
             // Show detailed information for the garbagePointCard
-//            showDetailScreen(for: garbagePointCard)
+            showDetailGarbagePointScreen(for: garbagePointCard)
         }
     }
     
     // MARK: - Detail Screen Presentation
     private func showDetailScreen(for placeCard: ExplorePlaceCardData) {
         let detailViewController = DetailPlaceViewController()
-        detailViewController.cardData = placeCard
+        detailViewController.placeID = placeCard.place.objectID
         let navigationController = UINavigationController(rootViewController: detailViewController)
-            present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
-
-//    private func showDetailScreen(for placeCard: ExplorePlaceCardData) {
-//        // Create and present the detail view controller for the selected placeCard
-//        let detailViewController = DetailPlaceViewController(place: placeCard.place)
-//        navigationController?.pushViewController(detailViewController, animated: true)
-//    }
     
-//    private func showDetailScreen(for routeCard: ExploreRouteCardData) {
-//        // Create and present the detail view controller for the selected routeCard
-//        let detailViewController = RouteDetailViewController(route: routeCard.route)
-//        navigationController?.pushViewController(detailViewController, animated: true)
-//    }
-//
-//    private func showDetailScreen(for eventCard: ExploreEventCardData) {
-//        // Create and present the detail view controller for the selected eventCard
-//        let detailViewController = EventDetailViewController(event: eventCard.event)
-//        navigationController?.pushViewController(detailViewController, animated: true)
-//    }
-//
-//    private func showDetailScreen(for garbagePointCard: ExploreGarbagePointCardData) {
-//        // Create and present the detail view controller for the selected garbagePointCard
-//        let detailViewController = GarbagePointDetailViewController(garbagePoint: garbagePointCard.garbagePoint)
-//        navigationController?.pushViewController(detailViewController, animated: true)
-//    }
+    private func showDetailRouteScreen(for routeCard: ExploreRouteCardData) {
+        let detailViewController = DetailRouteViewController()
+        detailViewController.routeID = routeCard.route.routeID
+        let navigationController = UINavigationController(rootViewController: detailViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    private func showDetailEventScreen(for eventCard: ExploreEventCardData) {
+        let detailViewController = DetailEventsViewController()
+        detailViewController.eventID = eventCard.event.eventID
+        let navigationController = UINavigationController(rootViewController: detailViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    private func showDetailGarbagePointScreen(for garbagePointCard: ExploreGarbagePointCardData) {
+        let detailViewController = GarbagePointDetailViewController()
+        detailViewController.garbagePointID = garbagePointCard.garbagePoint.pointID
+        let navigationController = UINavigationController(rootViewController: detailViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -305,10 +300,10 @@ extension ExploreViewController: UICollectionViewDataSource {
         cell.cardPollutionIcon.image = card.cardPollutionIcon
         cell.cardPollutionLabel.text = String(card.place.avgPurity ?? 0)
         
-        if let photoURLString = card.place.photo, let photoURL = URL(string: photoURLString) {
+        if let photoURLString = card.place.photo, let photoURL = URL(string: apiLink + photoURLString) {
             loadImage(from: photoURL, for: cell.cardPlacesImage)
         } else {
-            cell.cardPlacesImage.image = UIImage(named: "NoImage")
+            cell.cardPlacesImage.image = UIImage(named: "noImage")
         }
     }
     
@@ -328,10 +323,10 @@ extension ExploreViewController: UICollectionViewDataSource {
         cell.cardPollutionIcon.image = card.cardPollutionIcon
         cell.cardPollutionLabel.text = String(card.route.avgPurity ?? 0)
         
-        if let photoURLString = card.route.photo, let photoURL = URL(string: photoURLString) {
+        if let photoURLString = card.route.photo, let photoURL = URL(string: apiLink + photoURLString) {
             loadImage(from: photoURL, for: cell.cardPlacesImage)
         } else {
-            cell.cardPlacesImage.image = UIImage(named: "NoImage")
+            cell.cardPlacesImage.image = UIImage(named: "noImage")
         }
     }
     
@@ -371,10 +366,10 @@ extension ExploreViewController: UICollectionViewDataSource {
             }
         }()
         
-        if let photoURLString = card.event.photo, let photoURL = URL(string: photoURLString) {
+        if let photoURLString = card.event.photo, let photoURL = URL(string: apiLink + photoURLString) {
             loadImage(from: photoURL, for: cell.cardPlacesImage)
         } else {
-            cell.cardPlacesImage.image = UIImage(named: "NoImage")
+            cell.cardPlacesImage.image = UIImage(named: "noImage")
         }
     }
     
@@ -397,10 +392,10 @@ extension ExploreViewController: UICollectionViewDataSource {
             }
         }()
         
-        if let photoURLString = card.garbagePoint.photo, let photoURL = URL(string: photoURLString) {
+        if let photoURLString = card.garbagePoint.photo, let photoURL = URL(string: apiLink + photoURLString) {
             loadImage(from: photoURL, for: cell.cardPlacesImage)
         } else {
-            cell.cardPlacesImage.image = UIImage(named: "NoImage")
+            cell.cardPlacesImage.image = UIImage(named: "noImage")
         }
     }
     
@@ -416,7 +411,7 @@ extension ExploreViewController: UICollectionViewDataSource {
                 }
             } else {
                 DispatchQueue.main.async {
-                    imageView.image = UIImage(named: "NoImage")
+                    imageView.image = UIImage(named: "noImage")
                 }
             }
         }
