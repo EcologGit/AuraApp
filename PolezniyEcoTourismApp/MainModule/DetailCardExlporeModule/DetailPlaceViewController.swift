@@ -52,6 +52,7 @@ class DetailPlaceViewController: UIViewController {
     
     let cardLocationIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "locationIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -61,6 +62,7 @@ class DetailPlaceViewController: UIViewController {
     let cardCoordintateIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "coordinateIcon")
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
         return image
@@ -78,6 +80,7 @@ class DetailPlaceViewController: UIViewController {
     let cardComma: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.text = ","
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
         label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
@@ -304,47 +307,18 @@ class DetailPlaceViewController: UIViewController {
         }
 
         cardNameTitle.text = placeDetail.objectInfo.name
-        cardLocationIcon.image = UIImage(named: "locationIcon")
         cardLocationName.text = placeDetail.objectInfo.locality
-        cardCoordintateIcon.image = UIImage(named: "coordinateIcon")
-        cardComma.text = ","
         cardCoordintateX.text = placeDetail.objectInfo.longitudeE
         cardCoordintateY.text = placeDetail.objectInfo.latitudeN
         cardDescription.text = placeDetail.objectInfo.description
-        rateView.rateLabel.text = "Рейтинг"
-        rateView.cardTransportIcon.image = UIImage(named: "transportIcon")
-        rateView.cardTransportLabel.text = "Доступность"
-        rateView.cardBeautyIcon.image = UIImage(named: "beautyIcon")
-        rateView.cardBeautyLabel.text = "Красота"
-        rateView.cardPollutionIcon.image = UIImage(named: "pollutionIcon")
-        rateView.cardPollutionLabel.text = "Чистота"
         rateView.cardTransportRateLabel.text = String(placeDetail.objectInfo.avgAvailability ?? 0)
         rateView.cardBeautyRateLabel.text = String(placeDetail.objectInfo.avgBeauty ?? 0)
         rateView.cardPollutionRateLabel.text = String(placeDetail.objectInfo.avgPurity ?? 0)
-        wasteView.wasteLabel.text = "Собранные отходы"
-        wasteView.cardPlasticIcon.image = UIImage(named: "plasticIcon")
-        wasteView.cardPlasticLabel.text = "Пластик"
         wasteView.cardPlasticWeightLabel.text = "0.0"
-        wasteView.cardPlasticWeightMetricLabel.text = "кг"
-        wasteView.cardBatteryIcon.image = UIImage(named: "batteriesIcon")
-        wasteView.cardBatteryLabel.text = "Батарейки"
         wasteView.cardBatteryWeightLabel.text = "0.0"
-        wasteView.cardBatteryWeightMetricLabel.text = "кг"
-        wasteView.cardBulbIcon.image = UIImage(named: "bulbsIcon")
-        wasteView.cardBulbLabel.text = "Лампочки"
         wasteView.cardBulbWeightLabel.text = "0.0"
-        wasteView.cardBulbWeightMetricLabel.text = "кг"
-        wasteView.cardPaperIcon.image = UIImage(named: "papersIcon")
-        wasteView.cardPaperLabel.text = "Бумага"
         wasteView.cardPaperWeightLabel.text = "0.0"
-        wasteView.cardPaperWeightMetricLabel.text = "кг"
-        wasteView.cardMetallIcon.image = UIImage(named: "metalsIcon")
-        wasteView.cardMetallLabel.text = "Металл"
         wasteView.cardMetallWeightLabel.text = "0.0"
-        wasteView.cardMetallWeightMetricLabel.text = "кг"
-        wasteView.cardGlassIcon.image = UIImage(named: "glassIcon")
-        wasteView.cardGlassLabel.text = "Стекло"
         wasteView.cardGlassWeightLabel.text = "0.0"
-        wasteView.cardGlassWeightMetricLabel.text = "кг"
     }
 }

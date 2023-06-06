@@ -1,17 +1,14 @@
 //
-//  RateView.swift
+//  RateInputView.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 6/3/23.
+//  Created by Aleksandr Chebotarev on 6/6/23.
 //
 
 import UIKit
 
-class RateView: UIView {
+class RateInputView: UIView {
     // MARK: - Properties
-    var placeDetail: PlaceDetail?
-    // UI components
-    
     let rateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -24,8 +21,8 @@ class RateView: UIView {
     
     let cardTransportIcon: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "transportIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "transportIcon")
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
         return image
@@ -41,19 +38,21 @@ class RateView: UIView {
         return label
     }()
     
-    let cardTransportRateLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let transportTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardBeautyIcon: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "beautyIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "beautyIcon")
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
         return image
@@ -69,13 +68,15 @@ class RateView: UIView {
         return label
     }()
     
-    let cardBeautyRateLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let beautyTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardPollutionIcon: UIImageView = {
@@ -97,13 +98,15 @@ class RateView: UIView {
         return label
     }()
     
-    let cardPollutionRateLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let pollutionTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     override init(frame: CGRect) {
@@ -123,13 +126,13 @@ class RateView: UIView {
         addSubview(rateLabel)
         addSubview(cardTransportIcon)
         addSubview(cardTransportLabel)
-        addSubview(cardTransportRateLabel)
+        addSubview(transportTextField)
         addSubview(cardBeautyIcon)
         addSubview(cardBeautyLabel)
-        addSubview(cardBeautyRateLabel)
+        addSubview(beautyTextField)
         addSubview(cardPollutionIcon)
         addSubview(cardPollutionLabel)
-        addSubview(cardPollutionRateLabel)
+        addSubview(pollutionTextField)
         
         NSLayoutConstraint.activate([
         rateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -145,9 +148,10 @@ class RateView: UIView {
         cardTransportLabel.heightAnchor.constraint(equalToConstant: 20),
         cardTransportLabel.leadingAnchor.constraint(equalTo: cardTransportIcon.trailingAnchor, constant: 8),
         
-        cardTransportRateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 54),
-        cardTransportRateLabel.heightAnchor.constraint(equalToConstant: 20),
-        cardTransportRateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        transportTextField.topAnchor.constraint(equalTo: rateLabel.bottomAnchor, constant: 16),
+        transportTextField.heightAnchor.constraint(equalToConstant: 24),
+        transportTextField.widthAnchor.constraint(equalToConstant: 34),
+        transportTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         
         cardBeautyIcon.topAnchor.constraint(equalTo: cardTransportIcon.bottomAnchor, constant: 16),
         cardBeautyIcon.heightAnchor.constraint(equalToConstant: 24),
@@ -157,9 +161,10 @@ class RateView: UIView {
         cardBeautyLabel.heightAnchor.constraint(equalToConstant: 20),
         cardBeautyLabel.leadingAnchor.constraint(equalTo: cardBeautyIcon.trailingAnchor, constant: 8),
         
-        cardBeautyRateLabel.topAnchor.constraint(equalTo: cardTransportRateLabel.bottomAnchor, constant: 18),
-        cardBeautyRateLabel.heightAnchor.constraint(equalToConstant: 20),
-        cardBeautyRateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        beautyTextField.topAnchor.constraint(equalTo: transportTextField.bottomAnchor, constant: 16),
+        beautyTextField.heightAnchor.constraint(equalToConstant: 24),
+        beautyTextField.widthAnchor.constraint(equalToConstant: 34),
+        beautyTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         
         cardPollutionIcon.topAnchor.constraint(equalTo: cardBeautyIcon.bottomAnchor, constant: 16),
         cardPollutionIcon.heightAnchor.constraint(equalToConstant: 24),
@@ -169,10 +174,11 @@ class RateView: UIView {
         cardPollutionLabel.heightAnchor.constraint(equalToConstant: 20),
         cardPollutionLabel.leadingAnchor.constraint(equalTo: cardPollutionIcon.trailingAnchor, constant: 8),
         
-        cardPollutionRateLabel.topAnchor.constraint(equalTo: cardBeautyRateLabel.bottomAnchor, constant: 18),
-        cardPollutionRateLabel.heightAnchor.constraint(equalToConstant: 20),
-        cardPollutionRateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        pollutionTextField.topAnchor.constraint(equalTo: beautyTextField.bottomAnchor, constant: 16),
+        pollutionTextField.heightAnchor.constraint(equalToConstant: 24),
+        pollutionTextField.widthAnchor.constraint(equalToConstant: 34),
+        pollutionTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        
     ])
     }
 }
-

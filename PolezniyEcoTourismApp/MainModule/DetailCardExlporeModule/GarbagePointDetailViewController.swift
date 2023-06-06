@@ -49,6 +49,7 @@ class GarbagePointDetailViewController: UIViewController {
     
     let cardLocationIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "locationIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -57,6 +58,7 @@ class GarbagePointDetailViewController: UIViewController {
     
     let cardCoordintateIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "coordinateIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -74,6 +76,7 @@ class GarbagePointDetailViewController: UIViewController {
     
     let cardComma: UILabel = {
         let label = UILabel()
+        label.text = ","
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
@@ -92,6 +95,7 @@ class GarbagePointDetailViewController: UIViewController {
     
     let cardWorkTimeIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "timeIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -155,6 +159,7 @@ class GarbagePointDetailViewController: UIViewController {
     
     let wasteLabel: UILabel = {
         let label = UILabel()
+        label.text = "Типы отходов"
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
@@ -366,16 +371,11 @@ class GarbagePointDetailViewController: UIViewController {
             self.cardPlacesImage.image = UIImage(named: "noImage")
         }
         cardNameTitle.text = pointDetail.name
-        cardLocationIcon.image = UIImage(named: "locationIcon")
         cardLocationName.text = pointDetail.locality
-        cardCoordintateIcon.image = UIImage(named: "coordinateIcon")
-        cardComma.text = ","
         cardCoordintateX.text = pointDetail.longitudeE
         cardCoordintateY.text = pointDetail.latitudeN
         cardDescription.text = pointDetail.description
-        cardWorkTimeIcon.image = UIImage(named: "timeIcon")
         cardWorkTimeLabel.text = pointDetail.schedule
-        wasteLabel.text = "Типы отходов"
         if let wasteTypeName = pointDetail.wastTypes.first?.name {
             if wasteTypeName == "Крышечки" {
                 cardWastTypeIcon.image = UIImage(named: "plasticIcon")

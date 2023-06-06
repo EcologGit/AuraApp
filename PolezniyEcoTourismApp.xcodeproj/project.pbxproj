@@ -24,6 +24,11 @@
 		1FAEBAB32922A6D100300CE6 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAEBAB22922A6D100300CE6 /* TabView.swift */; };
 		1FAEBAB52922A6E900300CE6 /* ScrollableTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAEBAB42922A6E900300CE6 /* ScrollableTabView.swift */; };
 		1FBCD7002A2CE99F004CA969 /* GarbagePointDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD6FF2A2CE99F004CA969 /* GarbagePointDetailViewController.swift */; };
+		1FBCD7062A2F3FDE004CA969 /* RateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7052A2F3FDE004CA969 /* RateInputView.swift */; };
+		1FBCD7082A2F3FEE004CA969 /* WasteInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7072A2F3FEE004CA969 /* WasteInputView.swift */; };
+		1FBCD70A2A2F75C4004CA969 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7092A2F75C4004CA969 /* TestViewController.swift */; };
+		1FBCD70C2A2F783A004CA969 /* PlaceReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD70B2A2F783A004CA969 /* PlaceReportViewController.swift */; };
+		1FBCD70F2A2F7E2B004CA969 /* PointReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD70E2A2F7E2B004CA969 /* PointReportViewController.swift */; };
 		1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */; };
 		1FD10E782A2A4A47009F47AA /* ActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E772A2A4A47009F47AA /* ActivityCategory.swift */; };
 		1FD10E7A2A2B6863009F47AA /* DetailRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E792A2B6863009F47AA /* DetailRouteViewController.swift */; };
@@ -57,6 +62,11 @@
 		1FAEBAB22922A6D100300CE6 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		1FAEBAB42922A6E900300CE6 /* ScrollableTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTabView.swift; sourceTree = "<group>"; };
 		1FBCD6FF2A2CE99F004CA969 /* GarbagePointDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbagePointDetailViewController.swift; sourceTree = "<group>"; };
+		1FBCD7052A2F3FDE004CA969 /* RateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateInputView.swift; sourceTree = "<group>"; };
+		1FBCD7072A2F3FEE004CA969 /* WasteInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteInputView.swift; sourceTree = "<group>"; };
+		1FBCD7092A2F75C4004CA969 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		1FBCD70B2A2F783A004CA969 /* PlaceReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReportViewController.swift; sourceTree = "<group>"; };
+		1FBCD70E2A2F7E2B004CA969 /* PointReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReportViewController.swift; sourceTree = "<group>"; };
 		1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FD10E772A2A4A47009F47AA /* ActivityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategory.swift; sourceTree = "<group>"; };
 		1FD10E792A2B6863009F47AA /* DetailRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +205,17 @@
 			path = HorizontalMenu;
 			sourceTree = "<group>";
 		};
+		1FBCD70D2A2F7842004CA969 /* Additonal Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FBCD70B2A2F783A004CA969 /* PlaceReportViewController.swift */,
+				1FBCD70E2A2F7E2B004CA969 /* PointReportViewController.swift */,
+				1FBCD7052A2F3FDE004CA969 /* RateInputView.swift */,
+				1FBCD7072A2F3FEE004CA969 /* WasteInputView.swift */,
+			);
+			path = "Additonal Views";
+			sourceTree = "<group>";
+		};
 		1FD10E702A2A1A81009F47AA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				1FF1416E2A140114002283D1 /* ReportViewController.swift */,
+				1FBCD70D2A2F7842004CA969 /* Additonal Views */,
 			);
 			path = ReportModule;
 			sourceTree = "<group>";
@@ -241,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				1FF141722A140132002283D1 /* ProfileViewController.swift */,
+				1FBCD7092A2F75C4004CA969 /* TestViewController.swift */,
 			);
 			path = ProfileModule;
 			sourceTree = "<group>";
@@ -318,6 +341,7 @@
 			files = (
 				1FA03D7B2A26548E006178EB /* DetailPlaceViewController.swift in Sources */,
 				1F036719290E872600E8E6EB /* ExploreViewController.swift in Sources */,
+				1FBCD7082A2F3FEE004CA969 /* WasteInputView.swift in Sources */,
 				1F036715290E872600E8E6EB /* AppDelegate.swift in Sources */,
 				1FA5D001292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift in Sources */,
 				1FD10E7A2A2B6863009F47AA /* DetailRouteViewController.swift in Sources */,
@@ -327,16 +351,20 @@
 				1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */,
 				1FD10E802A2B7649009F47AA /* WasteView.swift in Sources */,
 				1FD10E782A2A4A47009F47AA /* ActivityCategory.swift in Sources */,
+				1FBCD70C2A2F783A004CA969 /* PlaceReportViewController.swift in Sources */,
 				1FF141732A140132002283D1 /* ProfileViewController.swift in Sources */,
 				1FAD518C29119E92004558D8 /* FontKit.swift in Sources */,
+				1FBCD70A2A2F75C4004CA969 /* TestViewController.swift in Sources */,
 				1FF1416F2A140114002283D1 /* ReportViewController.swift in Sources */,
 				1FAEBAB32922A6D100300CE6 /* TabView.swift in Sources */,
+				1FBCD7062A2F3FDE004CA969 /* RateInputView.swift in Sources */,
 				1FF141712A140127002283D1 /* FavoritesViewController.swift in Sources */,
 				1FA5CFFD292BCA690001EB62 /* RoutesCollectionViewCell.swift in Sources */,
 				1FAEBAB52922A6E900300CE6 /* ScrollableTabView.swift in Sources */,
 				1FF141772A1538AC002283D1 /* Parser.swift in Sources */,
 				1FF1416D2A1400FD002283D1 /* ActivityViewController.swift in Sources */,
 				1FD10E832A2BA690009F47AA /* DetailEventsViewController.swift in Sources */,
+				1FBCD70F2A2F7E2B004CA969 /* PointReportViewController.swift in Sources */,
 				1FAEBAAB292267FD00300CE6 /* CardsData.swift in Sources */,
 				1FBCD7002A2CE99F004CA969 /* GarbagePointDetailViewController.swift in Sources */,
 				1F036733290E9B3600E8E6EB /* TabBarModel.swift in Sources */,

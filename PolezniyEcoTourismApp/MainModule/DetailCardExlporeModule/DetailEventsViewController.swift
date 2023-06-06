@@ -45,6 +45,7 @@ class DetailEventsViewController: UIViewController {
 
     let cardLocationIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "locationIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -62,6 +63,7 @@ class DetailEventsViewController: UIViewController {
 
     let cardRouteIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routesInactiveIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -79,6 +81,7 @@ class DetailEventsViewController: UIViewController {
 
     let cardObjectIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routeStartIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -87,6 +90,7 @@ class DetailEventsViewController: UIViewController {
 
     let cardEventDateIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "calendarIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -104,6 +108,7 @@ class DetailEventsViewController: UIViewController {
 
     let cardEventTimeIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "timeIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -411,31 +416,19 @@ class DetailEventsViewController: UIViewController {
         }
 
         cardNameTitle.text = eventDetail.name
-        cardLocationIcon.image = UIImage(named: "locationIcon")
         cardLocationName.text = eventDetail.adress
         print(eventDetail.routes?.first?.name ?? "Nope")
         if let firstRoute = eventDetail.routes?.first?.name {
-            cardRouteIcon.image = UIImage(named: "routesInactiveIcon")
-            print("First route: \(firstRoute)")
             cardRouteName.text = firstRoute
-            cardRouteName.isHidden = false
-            cardRouteIcon.isHidden = false
         } else {
-            print("No route found")
-            cardRouteName.isHidden = true
-            cardRouteIcon.isHidden = true
+            cardRouteName.text = "Отсутствует"
         }
 
         if let objectName = eventDetail.natureObjects?.first?.name {
-            cardObjectIcon.image = UIImage(named: "routeStartIcon")
             cardObjectName.text = objectName
-            cardObjectName.isHidden = false // Show the label
-            cardObjectIcon.isHidden = false
         } else {
-            cardObjectName.isHidden = true // Hide the label
-            cardObjectIcon.isHidden = true
+            cardObjectName.text =  "Отсутствует"
         }
-        cardEventDateIcon.image = UIImage(named: "calendarIcon")
         let dateString = dateFormatter.string(from: eventDetail.timeStart)
         let components = dateString.components(separatedBy: ", ")
         if let date = components.first {
@@ -445,7 +438,6 @@ class DetailEventsViewController: UIViewController {
         if let time = components.last {
             cardEventTimeLabel.text = time
         }
-        cardEventTimeIcon.image = UIImage(named: "timeIcon")!
         cardEventStatusLabel.text = eventDetail.statusID.name
         cardEventStatusIcon.image = {
             switch eventDetail.statusID.name {
@@ -460,40 +452,14 @@ class DetailEventsViewController: UIViewController {
             }
         }()
         cardDescription.text = eventDetail.description
-        rateView.rateLabel.text = "Рейтинг"
-        rateView.cardTransportIcon.image = UIImage(named: "transportIcon")
-        rateView.cardTransportLabel.text = "Доступность"
-        rateView.cardBeautyIcon.image = UIImage(named: "beautyIcon")
-        rateView.cardBeautyLabel.text = "Красота"
-        rateView.cardPollutionIcon.image = UIImage(named: "pollutionIcon")
-        rateView.cardPollutionLabel.text = "Чистота"
         rateView.cardTransportRateLabel.text = String(eventDetail.avgAvailability ?? 0)
         rateView.cardBeautyRateLabel.text = String(eventDetail.avgBeauty ?? 0)
         rateView.cardPollutionRateLabel.text = String(eventDetail.avgPurity ?? 0)
-        wasteView.wasteLabel.text = "Собранные отходы"
-        wasteView.cardPlasticIcon.image = UIImage(named: "plasticIcon")
-        wasteView.cardPlasticLabel.text = "Пластик"
         wasteView.cardPlasticWeightLabel.text = "0.0"
-        wasteView.cardPlasticWeightMetricLabel.text = "кг"
-        wasteView.cardBatteryIcon.image = UIImage(named: "batteriesIcon")
-        wasteView.cardBatteryLabel.text = "Батарейки"
         wasteView.cardBatteryWeightLabel.text = "0.0"
-        wasteView.cardBatteryWeightMetricLabel.text = "кг"
-        wasteView.cardBulbIcon.image = UIImage(named: "bulbsIcon")
-        wasteView.cardBulbLabel.text = "Лампочки"
         wasteView.cardBulbWeightLabel.text = "0.0"
-        wasteView.cardBulbWeightMetricLabel.text = "кг"
-        wasteView.cardPaperIcon.image = UIImage(named: "papersIcon")
-        wasteView.cardPaperLabel.text = "Бумага"
         wasteView.cardPaperWeightLabel.text = "0.0"
-        wasteView.cardPaperWeightMetricLabel.text = "кг"
-        wasteView.cardMetallIcon.image = UIImage(named: "metalsIcon")
-        wasteView.cardMetallLabel.text = "Металл"
         wasteView.cardMetallWeightLabel.text = "0.0"
-        wasteView.cardMetallWeightMetricLabel.text = "кг"
-        wasteView.cardGlassIcon.image = UIImage(named: "glassIcon")
-        wasteView.cardGlassLabel.text = "Стекло"
         wasteView.cardGlassWeightLabel.text = "0.0"
-        wasteView.cardGlassWeightMetricLabel.text = "кг"
     }
 }

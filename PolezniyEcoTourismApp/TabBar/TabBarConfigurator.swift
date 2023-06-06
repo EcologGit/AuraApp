@@ -35,7 +35,7 @@ private extension TabBarConfigurator {
 
     func getViewControllers() -> [UIViewController] {
         var viewControllers = [UIViewController]()
-        allTab.forEach { tab in
+        for tab in allTab {
             let controller = getCurrentViewController(tab: tab)
             let navigationController = UINavigationController(rootViewController: controller)
             let tabBarItem = UITabBarItem(title: tab.title, image: tab.image, selectedImage: tab.selectedImage)
@@ -44,6 +44,13 @@ private extension TabBarConfigurator {
             controller.title = tab.title
             controller.view.backgroundColor = UIColor(named: "Background")
             viewControllers.append(navigationController)
+            if tab == .report {
+                controller.title = "Новый отчет"
+                controller.navigationController?.navigationBar.prefersLargeTitles = false
+            }
+            if tab == .profile {
+                controller.title = "Вход"
+            }
         }
         return viewControllers
     }

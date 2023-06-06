@@ -48,6 +48,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardLocationIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "locationIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -56,6 +57,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardStartCoordintateIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routeStartIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -73,6 +75,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardStartComma: UILabel = {
         let label = UILabel()
+        label.text = ","
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
@@ -91,6 +94,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardFinishCoordintateIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routeFinishIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -108,6 +112,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardFinishComma: UILabel = {
         let label = UILabel()
+        label.text = ","
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
@@ -126,6 +131,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardLengthIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routeLengthIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -135,6 +141,7 @@ class DetailRouteViewController: UIViewController {
     let cardLengthLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.text = "км"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
         label.font = FontKit.roundedFont(ofSize: 14, weight: .regular)
@@ -143,6 +150,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardLengthMetricLabel: UILabel = {
         let label = UILabel()
+        label.text = "км"
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "DarkGrey")
@@ -152,6 +160,7 @@ class DetailRouteViewController: UIViewController {
     
     let cardTimeIcon: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "routeTimeIcon")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -399,57 +408,23 @@ class DetailRouteViewController: UIViewController {
             self.cardPlacesImage.image = UIImage(named: "noImage")
         }
         cardNameTitle.text = routeDetail.objectInfo.name
-        cardLocationIcon.image = UIImage(named: "locationIcon")
         cardLocationName.text = routeDetail.objectInfo.locality
-        cardStartCoordintateIcon.image = UIImage(named: "routeStartIcon")
         cardStartCoordintateX.text = routeDetail.objectInfo.startE
-        cardStartComma.text = ","
         cardStartCoordintateY.text = routeDetail.objectInfo.startN
-        cardFinishCoordintateIcon.image = UIImage(named: "routeFinishIcon")
         cardFinishCoordintateX.text = routeDetail.objectInfo.endE
-        cardFinishComma.text = ","
         cardFinishCoordintateY.text = routeDetail.objectInfo.endN
-        cardLengthIcon.image = UIImage(named: "routeLengthIcon")
         cardLengthLabel.text = String(routeDetail.objectInfo.length)
-        cardLengthMetricLabel.text = "км"
-        cardTimeIcon.image = UIImage(named: "routeTimeIcon")
         cardTimeLabel.text = routeDetail.objectInfo.duration
         cardDescription.text = routeDetail.objectInfo.description
-        rateView.rateLabel.text = "Рейтинг"
-        rateView.cardTransportIcon.image = UIImage(named: "transportIcon")
-        rateView.cardTransportLabel.text = "Доступность"
-        rateView.cardBeautyIcon.image = UIImage(named: "beautyIcon")
-        rateView.cardBeautyLabel.text = "Красота"
-        rateView.cardPollutionIcon.image = UIImage(named: "pollutionIcon")
-        rateView.cardPollutionLabel.text = "Чистота"
         rateView.cardTransportRateLabel.text = String(routeDetail.objectInfo.avgAvailability ?? 0)
         rateView.cardBeautyRateLabel.text = String(routeDetail.objectInfo.avgBeauty ?? 0)
         rateView.cardPollutionRateLabel.text = String(routeDetail.objectInfo.avgPurity ?? 0)
-        wasteView.wasteLabel.text = "Собранные отходы"
-        wasteView.cardPlasticIcon.image = UIImage(named: "plasticIcon")
-        wasteView.cardPlasticLabel.text = "Пластик"
         wasteView.cardPlasticWeightLabel.text = "0.0"
-        wasteView.cardPlasticWeightMetricLabel.text = "кг"
-        wasteView.cardBatteryIcon.image = UIImage(named: "batteriesIcon")
-        wasteView.cardBatteryLabel.text = "Батарейки"
         wasteView.cardBatteryWeightLabel.text = "0.0"
-        wasteView.cardBatteryWeightMetricLabel.text = "кг"
-        wasteView.cardBulbIcon.image = UIImage(named: "bulbsIcon")
-        wasteView.cardBulbLabel.text = "Лампочки"
         wasteView.cardBulbWeightLabel.text = "0.0"
-        wasteView.cardBulbWeightMetricLabel.text = "кг"
-        wasteView.cardPaperIcon.image = UIImage(named: "papersIcon")
-        wasteView.cardPaperLabel.text = "Бумага"
         wasteView.cardPaperWeightLabel.text = "0.0"
-        wasteView.cardPaperWeightMetricLabel.text = "кг"
-        wasteView.cardMetallIcon.image = UIImage(named: "metalsIcon")
-        wasteView.cardMetallLabel.text = "Металл"
         wasteView.cardMetallWeightLabel.text = "0.0"
-        wasteView.cardMetallWeightMetricLabel.text = "кг"
-        wasteView.cardGlassIcon.image = UIImage(named: "glassIcon")
-        wasteView.cardGlassLabel.text = "Стекло"
         wasteView.cardGlassWeightLabel.text = "0.0"
-        wasteView.cardGlassWeightMetricLabel.text = "кг"
     }
     
     @objc private func saveCard() { print("Save button tapped") }

@@ -1,14 +1,13 @@
 //
-//  WasteView.swift
+//  WasteInputView.swift
 //  PolezniyEcoTourismApp
 //
-//  Created by Aleksandr Chebotarev on 6/3/23.
+//  Created by Aleksandr Chebotarev on 6/6/23.
 //
 
 import UIKit
-class WasteView: UIView {
+class WasteInputView: UIView {
     // MARK: - Properties
-    var placeDetail: PlaceDetail?
     // UI components
     let wasteLabel: UILabel = {
         let label = UILabel()
@@ -39,13 +38,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardPlasticWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let plasticTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardPlasticWeightMetricLabel: UILabel = {
@@ -77,13 +78,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardBatteryWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let batteryTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardBatteryWeightMetricLabel: UILabel = {
@@ -115,13 +118,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardBulbWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let bulbTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardBulbWeightMetricLabel: UILabel = {
@@ -153,13 +158,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardPaperWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let paperTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardPaperWeightMetricLabel: UILabel = {
@@ -191,13 +198,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardMetallWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let metalTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardMetallWeightMetricLabel: UILabel = {
@@ -229,13 +238,15 @@ class WasteView: UIView {
         return label
     }()
     
-    let cardGlassWeightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "DarkGrey")
-        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
-        return label
+    let glassTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 0.5
+        textField.tintColor = UIColor(named: "DarkGrey")
+        textField.layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1).cgColor
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     let cardGlassWeightMetricLabel: UILabel = {
@@ -266,27 +277,27 @@ class WasteView: UIView {
         addSubview(wasteLabel)
         addSubview(cardPlasticIcon)
         addSubview(cardPlasticLabel)
-        addSubview(cardPlasticWeightLabel)
+        addSubview(plasticTextField)
         addSubview(cardPlasticWeightMetricLabel)
         addSubview(cardBatteryIcon)
         addSubview(cardBatteryLabel)
-        addSubview(cardBatteryWeightLabel)
+        addSubview(batteryTextField)
         addSubview(cardBatteryWeightMetricLabel)
         addSubview(cardBulbIcon)
         addSubview(cardBulbLabel)
-        addSubview(cardBulbWeightLabel)
+        addSubview(bulbTextField)
         addSubview(cardBulbWeightMetricLabel)
         addSubview(cardPaperIcon)
         addSubview(cardPaperLabel)
-        addSubview(cardPaperWeightLabel)
+        addSubview(paperTextField)
         addSubview(cardPaperWeightMetricLabel)
         addSubview(cardMetallIcon)
         addSubview(cardMetallLabel)
-        addSubview(cardMetallWeightLabel)
+        addSubview(metalTextField)
         addSubview(cardMetallWeightMetricLabel)
         addSubview(cardGlassIcon)
         addSubview(cardGlassLabel)
-        addSubview(cardGlassWeightLabel)
+        addSubview(glassTextField)
         addSubview(cardGlassWeightMetricLabel)
         
         NSLayoutConstraint.activate([
@@ -304,9 +315,10 @@ class WasteView: UIView {
             cardPlasticLabel.heightAnchor.constraint(equalToConstant: 20),
             cardPlasticLabel.leadingAnchor.constraint(equalTo: cardPlasticIcon.trailingAnchor, constant: 8),
             
-            cardPlasticWeightLabel.topAnchor.constraint(equalTo: topAnchor, constant: 54),
-            cardPlasticWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardPlasticWeightLabel.trailingAnchor.constraint(equalTo: cardPlasticWeightMetricLabel.leadingAnchor, constant: -2),
+            plasticTextField.topAnchor.constraint(equalTo: wasteLabel.bottomAnchor, constant: 16),
+            plasticTextField.heightAnchor.constraint(equalToConstant: 24),
+            plasticTextField.widthAnchor.constraint(equalToConstant: 34),
+            plasticTextField.trailingAnchor.constraint(equalTo: cardPlasticWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardPlasticWeightMetricLabel.topAnchor.constraint(equalTo: topAnchor, constant: 54),
             cardPlasticWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -320,9 +332,10 @@ class WasteView: UIView {
             cardBatteryLabel.heightAnchor.constraint(equalToConstant: 20),
             cardBatteryLabel.leadingAnchor.constraint(equalTo: cardBatteryIcon.trailingAnchor, constant: 8),
             
-            cardBatteryWeightLabel.topAnchor.constraint(equalTo: cardPlasticWeightLabel.bottomAnchor, constant: 20),
-            cardBatteryWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardBatteryWeightLabel.trailingAnchor.constraint(equalTo: cardBatteryWeightMetricLabel.leadingAnchor, constant: -2),
+            batteryTextField.topAnchor.constraint(equalTo: plasticTextField.bottomAnchor, constant: 16),
+            batteryTextField.heightAnchor.constraint(equalToConstant: 24),
+            batteryTextField.widthAnchor.constraint(equalToConstant: 34),
+            batteryTextField.trailingAnchor.constraint(equalTo: cardBatteryWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardBatteryWeightMetricLabel.topAnchor.constraint(equalTo: cardPlasticWeightMetricLabel.bottomAnchor, constant: 20),
             cardBatteryWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -336,9 +349,10 @@ class WasteView: UIView {
             cardBulbLabel.heightAnchor.constraint(equalToConstant: 20),
             cardBulbLabel.leadingAnchor.constraint(equalTo: cardBulbIcon.trailingAnchor, constant: 8),
             
-            cardBulbWeightLabel.topAnchor.constraint(equalTo: cardBatteryWeightLabel.bottomAnchor, constant: 20),
-            cardBulbWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardBulbWeightLabel.trailingAnchor.constraint(equalTo: cardBulbWeightMetricLabel.leadingAnchor, constant: -2),
+            bulbTextField.topAnchor.constraint(equalTo: batteryTextField.bottomAnchor, constant: 16),
+            bulbTextField.heightAnchor.constraint(equalToConstant: 24),
+            bulbTextField.widthAnchor.constraint(equalToConstant: 34),
+            bulbTextField.trailingAnchor.constraint(equalTo: cardBulbWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardBulbWeightMetricLabel.topAnchor.constraint(equalTo: cardBatteryWeightMetricLabel.bottomAnchor, constant: 20),
             cardBulbWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -352,9 +366,10 @@ class WasteView: UIView {
             cardPaperLabel.heightAnchor.constraint(equalToConstant: 20),
             cardPaperLabel.leadingAnchor.constraint(equalTo: cardPaperIcon.trailingAnchor, constant: 8),
             
-            cardPaperWeightLabel.topAnchor.constraint(equalTo: cardBulbWeightLabel.bottomAnchor, constant: 20),
-            cardPaperWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardPaperWeightLabel.trailingAnchor.constraint(equalTo: cardPaperWeightMetricLabel.leadingAnchor, constant: -2),
+            paperTextField.topAnchor.constraint(equalTo: bulbTextField.bottomAnchor, constant: 16),
+            paperTextField.heightAnchor.constraint(equalToConstant: 24),
+            paperTextField.widthAnchor.constraint(equalToConstant: 34),
+            paperTextField.trailingAnchor.constraint(equalTo: cardPaperWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardPaperWeightMetricLabel.topAnchor.constraint(equalTo: cardBulbWeightMetricLabel.bottomAnchor, constant: 20),
             cardPaperWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -368,9 +383,10 @@ class WasteView: UIView {
             cardMetallLabel.heightAnchor.constraint(equalToConstant: 20),
             cardMetallLabel.leadingAnchor.constraint(equalTo: cardMetallIcon.trailingAnchor, constant: 8),
             
-            cardMetallWeightLabel.topAnchor.constraint(equalTo: cardPaperWeightLabel.bottomAnchor, constant: 20),
-            cardMetallWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardMetallWeightLabel.trailingAnchor.constraint(equalTo: cardMetallWeightMetricLabel.leadingAnchor, constant: -2),
+            metalTextField.topAnchor.constraint(equalTo: paperTextField.bottomAnchor, constant: 16),
+            metalTextField.heightAnchor.constraint(equalToConstant: 24),
+            metalTextField.widthAnchor.constraint(equalToConstant: 34),
+            metalTextField.trailingAnchor.constraint(equalTo: cardMetallWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardMetallWeightMetricLabel.topAnchor.constraint(equalTo: cardPaperWeightMetricLabel.bottomAnchor, constant: 20),
             cardMetallWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -384,9 +400,10 @@ class WasteView: UIView {
             cardGlassLabel.heightAnchor.constraint(equalToConstant: 20),
             cardGlassLabel.leadingAnchor.constraint(equalTo: cardGlassIcon.trailingAnchor, constant: 8),
             
-            cardGlassWeightLabel.topAnchor.constraint(equalTo: cardMetallWeightLabel.bottomAnchor, constant: 20),
-            cardGlassWeightLabel.heightAnchor.constraint(equalToConstant: 20),
-            cardGlassWeightLabel.trailingAnchor.constraint(equalTo: cardGlassWeightMetricLabel.leadingAnchor, constant: -2),
+            glassTextField.topAnchor.constraint(equalTo: metalTextField.bottomAnchor, constant: 16),
+            glassTextField.heightAnchor.constraint(equalToConstant: 24),
+            glassTextField.widthAnchor.constraint(equalToConstant: 34),
+            glassTextField.trailingAnchor.constraint(equalTo: cardGlassWeightMetricLabel.leadingAnchor, constant: -4),
             
             cardGlassWeightMetricLabel.topAnchor.constraint(equalTo: cardMetallWeightMetricLabel.bottomAnchor, constant: 20),
             cardGlassWeightMetricLabel.heightAnchor.constraint(equalToConstant: 20),
