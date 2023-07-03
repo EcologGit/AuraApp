@@ -210,7 +210,7 @@ class DetailEventsViewController: UIViewController {
     // MARK: - UI Setup
 
     private func setupUI() {
-            self.title = "Место"
+            self.title = "Мероприятие"
             view.backgroundColor = UIColor(named: "Background")
             // Add subviews
             // Add the scrollView to the view hierarchy

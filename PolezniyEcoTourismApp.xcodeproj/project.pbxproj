@@ -14,6 +14,8 @@
 		1F036721290E872700E8E6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F03671F290E872700E8E6EB /* LaunchScreen.storyboard */; };
 		1F036731290E9B2B00E8E6EB /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036730290E9B2B00E8E6EB /* TabBarConfigurator.swift */; };
 		1F036733290E9B3600E8E6EB /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F036732290E9B3600E8E6EB /* TabBarModel.swift */; };
+		1F726D392A347839009A84BA /* ReportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F726D382A347839009A84BA /* ReportsCollectionViewCell.swift */; };
+		1F726D3B2A347A52009A84BA /* ReportsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F726D3A2A347A52009A84BA /* ReportsData.swift */; };
 		1FA03D7B2A26548E006178EB /* DetailPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA03D7A2A26548E006178EB /* DetailPlaceViewController.swift */; };
 		1FA5CFFD292BCA690001EB62 /* RoutesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5CFFC292BCA690001EB62 /* RoutesCollectionViewCell.swift */; };
 		1FA5CFFF292BCA7B0001EB62 /* EventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5CFFE292BCA7B0001EB62 /* EventsCollectionViewCell.swift */; };
@@ -26,11 +28,9 @@
 		1FBCD7002A2CE99F004CA969 /* GarbagePointDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD6FF2A2CE99F004CA969 /* GarbagePointDetailViewController.swift */; };
 		1FBCD7062A2F3FDE004CA969 /* RateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7052A2F3FDE004CA969 /* RateInputView.swift */; };
 		1FBCD7082A2F3FEE004CA969 /* WasteInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7072A2F3FEE004CA969 /* WasteInputView.swift */; };
-		1FBCD70A2A2F75C4004CA969 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD7092A2F75C4004CA969 /* TestViewController.swift */; };
 		1FBCD70C2A2F783A004CA969 /* PlaceReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD70B2A2F783A004CA969 /* PlaceReportViewController.swift */; };
 		1FBCD70F2A2F7E2B004CA969 /* PointReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCD70E2A2F7E2B004CA969 /* PointReportViewController.swift */; };
 		1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */; };
-		1FD10E782A2A4A47009F47AA /* ActivityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E772A2A4A47009F47AA /* ActivityCategory.swift */; };
 		1FD10E7A2A2B6863009F47AA /* DetailRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E792A2B6863009F47AA /* DetailRouteViewController.swift */; };
 		1FD10E7E2A2B7618009F47AA /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E7D2A2B7618009F47AA /* RateView.swift */; };
 		1FD10E802A2B7649009F47AA /* WasteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD10E7F2A2B7648009F47AA /* WasteView.swift */; };
@@ -40,6 +40,7 @@
 		1FF141712A140127002283D1 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141702A140127002283D1 /* FavoritesViewController.swift */; };
 		1FF141732A140132002283D1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141722A140132002283D1 /* ProfileViewController.swift */; };
 		1FF141772A1538AC002283D1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF141762A1538AC002283D1 /* Parser.swift */; };
+		1FF1F5A42A433E7400AA3A72 /* DetailActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1F5A32A433E7400AA3A72 /* DetailActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		1F036722290E872700E8E6EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F036730290E9B2B00E8E6EB /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
 		1F036732290E9B3600E8E6EB /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
+		1F726D382A347839009A84BA /* ReportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1F726D3A2A347A52009A84BA /* ReportsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsData.swift; sourceTree = "<group>"; };
 		1FA03D7A2A26548E006178EB /* DetailPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceViewController.swift; sourceTree = "<group>"; };
 		1FA5CFFC292BCA690001EB62 /* RoutesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FA5CFFE292BCA7B0001EB62 /* EventsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -64,11 +67,9 @@
 		1FBCD6FF2A2CE99F004CA969 /* GarbagePointDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbagePointDetailViewController.swift; sourceTree = "<group>"; };
 		1FBCD7052A2F3FDE004CA969 /* RateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateInputView.swift; sourceTree = "<group>"; };
 		1FBCD7072A2F3FEE004CA969 /* WasteInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteInputView.swift; sourceTree = "<group>"; };
-		1FBCD7092A2F75C4004CA969 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1FBCD70B2A2F783A004CA969 /* PlaceReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceReportViewController.swift; sourceTree = "<group>"; };
 		1FBCD70E2A2F7E2B004CA969 /* PointReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReportViewController.swift; sourceTree = "<group>"; };
 		1FCAB0132914F16C00598ED2 /* PlacesCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCardCollectionViewCell.swift; sourceTree = "<group>"; };
-		1FD10E772A2A4A47009F47AA /* ActivityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategory.swift; sourceTree = "<group>"; };
 		1FD10E792A2B6863009F47AA /* DetailRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteViewController.swift; sourceTree = "<group>"; };
 		1FD10E7D2A2B7618009F47AA /* RateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
 		1FD10E7F2A2B7648009F47AA /* WasteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteView.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		1FF141702A140127002283D1 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1FF141722A140132002283D1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FF141762A1538AC002283D1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		1FF1F5A32A433E7400AA3A72 /* DetailActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActivityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,14 @@
 			path = MainModule;
 			sourceTree = "<group>";
 		};
+		1F726D372A3477ED009A84BA /* ActivityCells */ = {
+			isa = PBXGroup;
+			children = (
+				1F726D382A347839009A84BA /* ReportsCollectionViewCell.swift */,
+			);
+			path = ActivityCells;
+			sourceTree = "<group>";
+		};
 		1F77F66B291BEBDB00412DEF /* ExploreCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,8 +246,10 @@
 		1FF141682A14007D002283D1 /* ActivityModule */ = {
 			isa = PBXGroup;
 			children = (
+				1FF1F5A22A433E4C00AA3A72 /* DetailActivityModule */,
+				1F726D372A3477ED009A84BA /* ActivityCells */,
 				1FF1416C2A1400FD002283D1 /* ActivityViewController.swift */,
-				1FD10E772A2A4A47009F47AA /* ActivityCategory.swift */,
+				1F726D3A2A347A52009A84BA /* ReportsData.swift */,
 			);
 			path = ActivityModule;
 			sourceTree = "<group>";
@@ -263,9 +275,16 @@
 			isa = PBXGroup;
 			children = (
 				1FF141722A140132002283D1 /* ProfileViewController.swift */,
-				1FBCD7092A2F75C4004CA969 /* TestViewController.swift */,
 			);
 			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		1FF1F5A22A433E4C00AA3A72 /* DetailActivityModule */ = {
+			isa = PBXGroup;
+			children = (
+				1FF1F5A32A433E7400AA3A72 /* DetailActivityViewController.swift */,
+			);
+			path = DetailActivityModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,20 +365,21 @@
 				1FA5D001292BCA8C0001EB62 /* GarbagePointsCollectionViewCell.swift in Sources */,
 				1FD10E7A2A2B6863009F47AA /* DetailRouteViewController.swift in Sources */,
 				1F036731290E9B2B00E8E6EB /* TabBarConfigurator.swift in Sources */,
+				1F726D392A347839009A84BA /* ReportsCollectionViewCell.swift in Sources */,
 				1F036717290E872600E8E6EB /* SceneDelegate.swift in Sources */,
 				1FA5CFFF292BCA7B0001EB62 /* EventsCollectionViewCell.swift in Sources */,
 				1FCAB0142914F16C00598ED2 /* PlacesCardCollectionViewCell.swift in Sources */,
 				1FD10E802A2B7649009F47AA /* WasteView.swift in Sources */,
-				1FD10E782A2A4A47009F47AA /* ActivityCategory.swift in Sources */,
 				1FBCD70C2A2F783A004CA969 /* PlaceReportViewController.swift in Sources */,
 				1FF141732A140132002283D1 /* ProfileViewController.swift in Sources */,
 				1FAD518C29119E92004558D8 /* FontKit.swift in Sources */,
-				1FBCD70A2A2F75C4004CA969 /* TestViewController.swift in Sources */,
 				1FF1416F2A140114002283D1 /* ReportViewController.swift in Sources */,
 				1FAEBAB32922A6D100300CE6 /* TabView.swift in Sources */,
+				1F726D3B2A347A52009A84BA /* ReportsData.swift in Sources */,
 				1FBCD7062A2F3FDE004CA969 /* RateInputView.swift in Sources */,
 				1FF141712A140127002283D1 /* FavoritesViewController.swift in Sources */,
 				1FA5CFFD292BCA690001EB62 /* RoutesCollectionViewCell.swift in Sources */,
+				1FF1F5A42A433E7400AA3A72 /* DetailActivityViewController.swift in Sources */,
 				1FAEBAB52922A6E900300CE6 /* ScrollableTabView.swift in Sources */,
 				1FF141772A1538AC002283D1 /* Parser.swift in Sources */,
 				1FF1416D2A1400FD002283D1 /* ActivityViewController.swift in Sources */,

@@ -11,7 +11,7 @@ enum TabBarModel {
     case explore
     case feed
     case report
-    case favorite
+//    case favorite
     case profile
 
     var title: String {
@@ -22,8 +22,8 @@ enum TabBarModel {
             return "Активность"
         case .report:
             return "Отчет"
-        case .favorite:
-            return "Отметки"
+//        case .favorite:
+//            return "Отметки"
         case .profile:
             return "Профиль"
         }
@@ -37,8 +37,8 @@ enum TabBarModel {
             return UIImage(systemName: "bolt.horizontal.circle.fill")
         case .report:
             return UIImage(systemName: "plus.circle.fill")
-        case .favorite:
-            return UIImage(systemName: "bookmark.circle.fill")
+//        case .favorite:
+//            return UIImage(systemName: "bookmark.circle.fill")
         case .profile:
             return UIImage(systemName: "person.circle.fill")
         }

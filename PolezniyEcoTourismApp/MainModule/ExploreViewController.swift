@@ -70,7 +70,7 @@ class ExploreViewController: UIViewController {
         scrollableTabView.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
         // Register collection view cells
         collectionView.register(PlacesCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(RoutesCollectionViewCell.self, forCellWithReuseIdentifier: "pcell")

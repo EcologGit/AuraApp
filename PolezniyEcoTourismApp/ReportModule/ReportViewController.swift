@@ -7,10 +7,33 @@
 
 import UIKit
 
-class ReportViewController: UIViewController, UITextViewDelegate {
+
+class ReportViewController: UIViewController, UITextViewDelegate, PlaceReportViewControllerDelegate, PointReportDelegate {
     
+    weak var delegate: PlaceReportViewControllerDelegate?
+    weak var pointDelegate: PointReportViewController?
+    var selectedImage: UIImage?
+    var accessToken: String = ""
+    var selectedOption: String = ""
+    var selectedOptionID: Int = 0
+    var selectedPointID: Int = 0
     let rateInputView = RateInputView()
     let wasteInputView = WasteInputView()
+    
+    struct Media {
+        let key: String
+        let filename: String
+        let data: Data
+        let mimeType: String
+        
+        init?(withImage image: UIImage, forKey key: String) {
+            self.key = key
+            self.mimeType = "image/jpeg"
+            self.filename = "imagefile.jpg"
+            guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
+            self.data = data
+        }
+    }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -40,7 +63,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     
     lazy var placeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Место уборки", for: .normal)
+        button.setTitle("Тип и название объекта", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
         button.setImage(UIImage(named: "chevronRight"), for: .normal)
@@ -48,7 +71,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
         button.semanticContentAttribute = .forceRightToLeft
         button.addTarget(self, action: #selector(placeActionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        let spacing: CGFloat = 211
+        let spacing: CGFloat = 139
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: -spacing/2, bottom: 0, right: spacing/2)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: spacing/2, bottom: 0, right: -spacing/2)
         
@@ -151,7 +174,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
         button.titleLabel?.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
         button.setImage(UIImage(named: "postIcon"), for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(photoActionButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(postActionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         let spacing: CGFloat = 8
@@ -167,7 +190,7 @@ class ReportViewController: UIViewController, UITextViewDelegate {
         button.titleLabel?.font = FontKit.roundedFont(ofSize: 17, weight: .semibold)
         button.setImage(UIImage(named: "draftIcon"), for: .normal)
         button.tintColor = UIColor(named: "DarkGrey")
-        button.addTarget(self, action: #selector(photoActionButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(draftActionButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         let spacing: CGFloat = 4
@@ -179,7 +202,6 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
-        descriptionTextView.becomeFirstResponder()
         setupLayout()
     }
     
@@ -278,18 +300,231 @@ class ReportViewController: UIViewController, UITextViewDelegate {
     
     @objc func placeActionButton() {
         let placeViewController = PlaceReportViewController()
+        placeViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: placeViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
+    
+    func didSelectOption(_ option: String, id: Int) {
+        selectedOption = option // Store the selected option
+        selectedOptionID = id // Store the selected id
+    }
+    
+    func didSelectPoint(_ pointId: Int) {
+        selectedPointID = pointId
+    }
+    
     @objc func pointActionButton() {
         let pointViewController = PointReportViewController()
+        pointViewController.pointDelegate = self
         let navigationController = UINavigationController(rootViewController: pointViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
     @objc func photoActionButton() {
-        //your code here when click
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func postActionButton() {
+        guard let accessToken = UserDefaults.standard.string(forKey: "AccessToken") else {
+            print("Access token is missing")
+            return
+        }
+        let authorizationHeaderValue = "Bearer " + accessToken
+        let description = descriptionTextView.text ?? ""
+        
+        guard let availabilityText = rateInputView.transportTextField.text,
+              let availability = Int(availabilityText) else { return }
+        
+        guard let beautyText = rateInputView.beautyTextField.text,
+              let beauty = Int(beautyText) else { return }
+        
+        guard let purityText = rateInputView.pollutionTextField.text,
+              let purity = Int(purityText) else { return }
+        
+        guard let plasticText = wasteInputView.plasticTextField.text,
+              let plastic = Int(plasticText) else { return }
+        
+        guard let batteriesText = wasteInputView.batteryTextField.text,
+              let batteries = Int(batteriesText) else { return }
+        
+        guard let bulbText = wasteInputView.bulbTextField.text,
+              let bulb = Int(bulbText) else { return }
+        
+        guard let paperText = wasteInputView.paperTextField.text,
+              let paper = Int(paperText) else { return }
+        
+        guard let metallText = wasteInputView.metalTextField.text,
+              let metall = Int(metallText) else { return }
+        
+        guard let glassText = wasteInputView.glassTextField.text,
+              let glass = Int(glassText) else { return }
+        
+        guard let image = selectedImage else {
+            print("No image selected")
+            return
+        }
+        
+        guard let fileURL = saveImageToFile(image) else {
+            print("Failed to save image to file")
+            return
+        }
+        
+        guard let filePath = fileURL.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            print("Failed to encode file path")
+            return
+        }
+        
+        let parameters = [
+            [
+                "key": "description",
+                "value": description,
+                "type": "text",
+                "contentType": "text/plain"
+            ],
+            [
+                "key": "photo",
+                "src": filePath,
+                //                "src": "/path/to/file",
+                "type": "file"
+            ],
+            [
+                "key": "rate",
+                "value": "{\"availability\": \(availability), \"beauty\": \(beauty), \"purity\": \(purity)}",
+                "type": "text"
+            ],
+            [
+                "key": "results",
+                "value": "[{\"waste_id\":{\"name\": \"Крышечки\", \"unit_of_waste\": \"шт\"}, \"amount\": \(metall)}]",
+                "type": "text"
+            ],
+            [
+                "key": "report_status",
+                "value": "Принят",
+                "type": "text"
+            ],
+            [
+                "key": "point_id",
+                "value": String(selectedPointID),
+                "type": "text"
+            ],
+            [
+                "key": "type_obj",
+                "value": selectedOption,
+                "type": "text"
+            ],
+            [
+                "key": "id_obj",
+                "value": String(selectedOptionID),
+                "type": "text"
+            ]
+        ] as [[String: Any]]
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+        var error: Error? = nil
+        for param in parameters {
+            if param["disabled"] != nil { continue }
+            let paramName = param["key"] as! String
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition: form-data; name=\"\(paramName)\""
+            if let contentType = param["contentType"] as? String {
+                body += "\r\nContent-Type: \(contentType)"
+            }
+            let paramType = param["type"] as! String
+            if paramType == "text" {
+                let paramValue = param["value"] as! String
+                body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+                let paramSrc = param["src"] as! String
+                let fileData = try! NSData(contentsOfFile: paramSrc, options: []) as Data
+                let fileContent = String(data: fileData, encoding: .utf8)!
+                body += "; filename=\"\(paramSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            }
+        }
+        print(parameters)
+        body += "--\(boundary)--\r\n"
+        let postData = body.data(using: .utf8)
+        
+        guard let url = URL(string: "http://81.163.30.36:8000/report/create_report/") else {
+            print("Invalid URL")
+            return
+        }
+        var request = URLRequest(url: url, timeoutInterval: Double.infinity)
+        request.httpMethod = "POST"
+        request.addValue(authorizationHeaderValue, forHTTPHeaderField: "Authorization")
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = postData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Request error: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+        }
+        
+        task.resume()
+        
+    }
+    
+    func saveToDocuments(image: UIImage) throws -> URL
+    {
+        let imageFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let imageURL = imageFolder.appendingPathComponent("\(UUID()).jpg")
+        let jpegData = image.jpegData(compressionQuality: 0.8)
+        try jpegData?.write(to: imageURL, options: .atomic)
+        return imageURL
+    }
+    
+    @objc func draftActionButton() {
     }
     
 }
+
+extension ReportViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        // Store the selected image
+        selectedImage = image
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func saveImageToFile(_ image: UIImage) -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+            print("Failed to convert image to JPEG data")
+            return nil
+        }
+        
+        let fileManager = FileManager.default
+        let temporaryDirectory = NSTemporaryDirectory()
+        let fileName = UUID().uuidString + ".jpeg"
+        let fileURL = URL(fileURLWithPath: temporaryDirectory).appendingPathComponent(fileName)
+        
+        do {
+            try imageData.write(to: fileURL)
+            return fileURL.path
+        } catch {
+            print("Failed to save image to file: \(error)")
+            return nil
+        }
+    }
+}
+

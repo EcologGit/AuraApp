@@ -126,55 +126,104 @@ class ProfileViewController: UIViewController {
         
     }
     
+
     @objc func logInActionButton() {
-            guard let username = mailTextField.text, let password = passTextField.text else {
-                print("Username or password is missing")
-                return
-            }
-            
-            let url = URL(string: "http://81.163.30.36:8000/users/api/mobile_token/")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let parameters: [String: Any] = [
-                "username": username,
-                "password": password
-            ]
-            
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            } catch {
-                print("Failed to create JSON data: \(error)")
-                return
-            }
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Request error: \(error)")
-                    return
-                }
-                
-                guard let data = data else {
-                    print("No data received")
-                    return
-                }
-                
-                // Process the response data here...
-                // You can parse the response JSON and handle success/failure cases accordingly
-                
-                if let responseString = String(data: data, encoding: .utf8) {
-                    print("Response: \(responseString)")
-                    if responseString == "success" {
-                        // Create and present the new view controller
-                        let newViewController = TestViewController()
-                        self.present(newViewController, animated: true, completion: nil)
-                    }
-                }
-            }
-            
-            task.resume()
+        guard let username = mailTextField.text, let password = passTextField.text else {
+            print("Username or password is missing")
+            return
         }
+        
+        let parameters = [
+            [
+                "key": "username",
+                "value": username,
+                "type": "text"
+            ],
+            [
+                "key": "password",
+                "value": password,
+                "type": "text"
+            ]
+        ] as [[String: Any]]
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+
+        for param in parameters {
+            if param["disabled"] != nil {
+                continue
+            }
+
+            let paramName = param["key"]!
+
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(paramName)\""
+
+            if param["contentType"] != nil {
+                body += "\r\nContent-Type: \(param["contentType"] as! String)"
+            }
+
+            let paramType = param["type"] as! String
+
+            if paramType == "text" {
+                let paramValue = param["value"] as! String
+                body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+                let paramSrc = param["src"] as! String
+
+                do {
+                    let fileData = try Data(contentsOf: URL(fileURLWithPath: paramSrc))
+                    let fileContent = String(data: fileData, encoding: .utf8)!
+
+                    body += "; filename=\"\(paramSrc)\"\r\n"
+                        + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+                } catch {
+                    print("Error reading file data: \(error)")
+                    return
+                }
+            }
+        }
+
+        body += "--\(boundary)--\r\n"
+        let postData = body.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "http://81.163.30.36:8000/users/api/mobile_token/")!, timeoutInterval: Double.infinity)
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error in data task: \(error)")
+                return
+            }
+
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+
+                // Assuming the response contains the access token in JSON format
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let accessToken = json["access"] as? String {
+                        // Store the access token
+                        UserDefaults.standard.set(accessToken, forKey: "AccessToken")
+                        // Use the access token as needed
+                        print("Access Token: \(accessToken)")
+                    }
+                } catch {
+                    print("Failed to parse JSON: \(error)")
+                }
+            }
+        }
+
+        task.resume()
+    }
+
     
     @objc func signUpActionButton() {
         print("Sign Up button tapped")

@@ -11,7 +11,7 @@ final class TabBarConfigurator {
 
     // MARK: - Private property
 
-    private let allTab: [TabBarModel] = [.explore, .feed, .report, .favorite, .profile]
+    private let allTab: [TabBarModel] = [.explore, .feed, .report, .profile]
 
     // MARK: - Internal Methods
 
@@ -63,8 +63,8 @@ private extension TabBarConfigurator {
             return ActivityViewController()
         case .report:
             return ReportViewController()
-        case .favorite:
-            return FavoritesViewController()
+//        case .favorite:
+//            return FavoritesViewController()
         case .profile:
             return ProfileViewController()
         }

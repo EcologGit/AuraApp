@@ -19,6 +19,16 @@ class RateInputView: UIView {
         return label
     }()
     
+    let rateAttentionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.text = "Метрика от 1 до 5"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightGray
+        label.font = FontKit.roundedFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
     let cardTransportIcon: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +134,7 @@ class RateInputView: UIView {
         layer.cornerRadius = 22
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(rateLabel)
+        addSubview(rateAttentionLabel)
         addSubview(cardTransportIcon)
         addSubview(cardTransportLabel)
         addSubview(transportTextField)
@@ -138,7 +149,10 @@ class RateInputView: UIView {
         rateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
         rateLabel.heightAnchor.constraint(equalToConstant: 20),
         rateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-        rateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        
+        rateAttentionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+        rateAttentionLabel.heightAnchor.constraint(equalToConstant: 20),
+        rateAttentionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         
         cardTransportIcon.topAnchor.constraint(equalTo: rateLabel.bottomAnchor, constant: 16),
         cardTransportIcon.heightAnchor.constraint(equalToConstant: 24),
@@ -180,5 +194,14 @@ class RateInputView: UIView {
         pollutionTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         
     ])
+    }
+}
+
+extension UITextField: UITextFieldDelegate {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Only allow digits and backspace
+        let allowedCharacters = CharacterSet(charactersIn: "0123456789") // You can add additional characters if needed
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet) || string.isEmpty
     }
 }
